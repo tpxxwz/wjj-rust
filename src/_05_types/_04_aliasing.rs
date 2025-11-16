@@ -22,3 +22,5 @@ fn main() {
     );
 }
 // 别名的主要用途是减少重复代码。例如，io::Result<T> 类型是 Result<T, io::Error> 类型的别名。
+
+crate::gen_test!(main);

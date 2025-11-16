@@ -18,3 +18,5 @@ fn main() {
     // 正确！`_mutable_integer` 在此作用域中未被冻结
     _mutable_integer = 3;
 }
+
+crate::gen_test!(main);

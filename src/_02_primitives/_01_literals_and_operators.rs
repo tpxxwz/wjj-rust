@@ -38,3 +38,5 @@ fn main() {
     // 使用下划线来提高可读性！
     println!("One million is written as {}", 1_000_000u32);
 }
+
+crate::gen_test!(main);

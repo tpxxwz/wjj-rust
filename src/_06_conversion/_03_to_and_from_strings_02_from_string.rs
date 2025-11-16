@@ -35,3 +35,5 @@ fn main() {
     let circle: Circle = radius.parse().unwrap();
     println!("{:?}", circle);
 }
+
+crate::gen_test!(main);

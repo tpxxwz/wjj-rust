@@ -24,3 +24,5 @@ impl VeryVerboseEnumOfThingsToDoWithNumbers {
         }
     }
 }
+
+crate::gen_test!(main);

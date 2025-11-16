@@ -25,3 +25,5 @@ fn main() {
     // THRESHOLD = 5;
     // 修复：^ 注释掉此行
 }
+
+crate::gen_test!(main);

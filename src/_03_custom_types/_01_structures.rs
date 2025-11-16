@@ -81,3 +81,5 @@ fn main() {
 
     println!("pair 包含 {:?} 和 {:?}", integer, decimal);
 }
+
+crate::gen_test!(main);

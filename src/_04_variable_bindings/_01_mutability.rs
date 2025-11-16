@@ -15,3 +15,5 @@ fn main() {
     // 错误！不能给不可变变量赋新值
     // _immutable_binding += 1;
 }
+
+crate::gen_test!(main);

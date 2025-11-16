@@ -27,3 +27,5 @@ fn main() {
 // 代码可以被划分为称为"模块"的逻辑单元。
 // 在这个例子中，size_of_val 函数定义在 mem 模块中，而 mem 模块则定义在 std crate 中。
 // 更多详情请参阅模块和crate。
+
+crate::gen_test!(main);

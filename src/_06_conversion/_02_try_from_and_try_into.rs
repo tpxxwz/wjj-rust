@@ -33,3 +33,5 @@ fn main() {
     let result: Result<EvenNumber, ()> = 5i32.try_into();
     assert_eq!(result, Err(()));
 }
+
+crate::gen_test!(main);

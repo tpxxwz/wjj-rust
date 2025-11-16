@@ -44,3 +44,5 @@ fn main() {
     inspect(load);
     inspect(unload);
 }
+
+crate::gen_test!(main);

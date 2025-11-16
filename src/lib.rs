@@ -1,12 +1,39 @@
-#![allow(dead_code)]
+#![allow(
+    dead_code,
+    unreachable_code,
+    unused_labels,
+    unused_imports,
+    unused_variables,
+    unused_assignments,
+    unused_must_use,
+    path_statements
+)]
+
+#[macro_export]
+macro_rules! gen_test {
+    ($fn_name:ident) => {
+        ::paste::paste! {
+            #[cfg(test)]
+            mod [<$fn_name _tests>] {
+
+                use super::*;
+
+                #[test]
+                fn [<$fn_name _test>]() {
+                    $fn_name();
+                }
+            }
+        }
+    };
+}
 
 pub mod _02_primitives;
 pub mod _03_custom_types;
 pub mod _04_variable_bindings;
 pub mod _05_types;
 pub mod _06_conversion;
-// pub mod _07_expressions;
-// pub mod _08_flow_of_control;
+pub mod _07_expressions;
+pub mod _08_flow_of_control;
 // pub mod _09_functions;
 // pub mod _10_modules;
 // pub mod _11_crates;

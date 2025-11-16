@@ -70,3 +70,5 @@ fn main() {
     println!("链表长度为：{}", list.len());
     println!("{}", list.stringify());
 }
+
+crate::gen_test!(main);

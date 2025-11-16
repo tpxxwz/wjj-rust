@@ -38,3 +38,5 @@ fn main() {
         Teacher => println!("教师正在传播知识！"),
     }
 }
+
+crate::gen_test!(main);

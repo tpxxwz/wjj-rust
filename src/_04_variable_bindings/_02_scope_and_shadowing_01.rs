@@ -20,3 +20,5 @@ fn main() {
 
     println!("外部 long：{}", long_lived_binding);
 }
+
+crate::gen_test!(main);

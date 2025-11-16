@@ -64,3 +64,5 @@ fn main() {
     // 对切片的越界索引会导致运行时错误。
     //println!("{}", xs[..][5]);
 }
+
+crate::gen_test!(main);

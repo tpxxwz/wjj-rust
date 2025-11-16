@@ -24,3 +24,5 @@ fn main() {
     let num = Number::from(30);
     println!("我的数字是 {:?}", num);
 }
+
+crate::gen_test!(main);

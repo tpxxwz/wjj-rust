@@ -17,3 +17,5 @@ fn main() {
     let shadowed_binding = 2;
     println!("外部代码块中被遮蔽：{}", shadowed_binding);
 }
+
+crate::gen_test!(main);

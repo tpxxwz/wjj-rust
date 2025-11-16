@@ -85,3 +85,5 @@ fn main() {
         println!("   NaN 转换为 u8 是：{}", f32::NAN.to_int_unchecked::<u8>());
     }
 }
+
+crate::gen_test!(main);

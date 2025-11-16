@@ -23,3 +23,5 @@ fn main() {
     let num: Number = int.into();
     println!("我的数字是 {:?}", num);
 }
+
+crate::gen_test!(main);

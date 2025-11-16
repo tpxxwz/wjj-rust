@@ -18,3 +18,5 @@ fn main() {
     let circle = Circle { radius: 6 };
     println!("{}", circle.to_string());
 }
+
+crate::gen_test!(main);

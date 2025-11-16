@@ -27,3 +27,5 @@ fn main() {
 
     println!("另一个绑定：{}", another_binding);
 }
+
+crate::gen_test!(main);

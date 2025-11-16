@@ -26,3 +26,5 @@ fn main() {
     println!("玫瑰的颜色是 #{:06x}", Color::Red as u32);
     println!("紫罗兰的颜色是 #{:06x}", Color::Blue as u32);
 }
+
+crate::gen_test!(main);

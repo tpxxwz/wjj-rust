@@ -17,3 +17,5 @@ fn main() {
 
     println!("{:?}", vec);
 }
+
+crate::gen_test!(main);

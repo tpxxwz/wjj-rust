@@ -1,7 +1,9 @@
 // 测试实例：链表
 // 使用 enum 是实现链表的常见方法：
 
-use crate::_03_custom_types::_02_enums_12_c_testcase_linked_list::List::*;
+// use crate::_03_custom_types::_02_enums_12_c_testcase_linked_list::List::*;
+// use super::_02_enums_12_c_testcase_linked_list::List::*;
+use List::*;
 
 enum List {
     // Cons：包含一个元素和指向下一节点指针的元组结构体

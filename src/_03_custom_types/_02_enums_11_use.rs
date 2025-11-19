@@ -17,9 +17,11 @@ enum Role {
 fn main() {
     // 显式 `use` 每个名称，使它们可以不需要
     // 手动作用域限定就能使用。
-    use crate::_03_custom_types::_02_enums_11_use::Stage::{Advanced, Beginner};
+    // use crate::_03_custom_types::_02_enums_11_use::Stage::{Advanced, Beginner};
+    use Stage::{Advanced, Beginner};
     // // 自动 `use` `Role` 内的每个名称。
-    use crate::_03_custom_types::_02_enums_11_use::Role::*;
+    // use crate::_03_custom_types::_02_enums_11_use::Role::*;
+    use Role::*;
 
     // 等同于 `Stage::Beginner`。
     let stage = Beginner;

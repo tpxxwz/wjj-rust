@@ -5,8 +5,10 @@
     unused_imports,
     unused_variables,
     unused_assignments,
+    unused_attributes,
     unused_must_use,
-    path_statements
+    path_statements,
+    unexpected_cfgs
 )]
 
 #[macro_export]
@@ -36,11 +38,11 @@ pub mod _07_expressions;
 pub mod _08_flow_of_control;
 pub mod _09_functions;
 pub mod _10_modules;
-// pub mod _11_crates;
-// pub mod _12_cargo;
-// pub mod _13_attributes;
-// pub mod _14_generics;
-// pub mod _15_scoping_rules;
+pub mod _11_crates;
+pub mod _12_cargo;
+pub mod _13_attributes;
+pub mod _14_generics;
+pub mod _15_scoping_rules;
 // pub mod _16_traits;
 // pub mod _17_macro_rules;
 // pub mod _18_error_handling;

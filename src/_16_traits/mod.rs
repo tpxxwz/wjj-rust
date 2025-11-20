@@ -1,1 +1,15 @@
 pub mod _00_main;
+pub mod _01_derive;
+pub mod _02_returning_traits_with_dyn;
+pub mod _03_operator_overloading;
+pub mod _04_drop;
+pub mod _04_drop_01_example;
+pub mod _05_iterators;
+pub mod _06_impl_trait;
+pub mod _06_impl_trait_01_as_an_argument_type;
+pub mod _06_impl_trait_02_as_an_return_type_01;
+pub mod _06_impl_trait_02_as_an_return_type_02;
+pub mod _06_impl_trait_02_as_an_return_type_03;
+pub mod _07_clone;
+pub mod _08_supertraits;
+pub mod _09_disambiguating_overlapping_traits;

@@ -17,4 +17,7 @@ pub mod _04_lifetimes_15_traits;
 pub mod _04_lifetimes_16_bounds;
 pub mod _04_lifetimes_17_coercion;
 pub mod _04_lifetimes_18_static;
+pub mod _04_lifetimes_18_static_01_reference_lifetime_01_static;
+pub mod _04_lifetimes_18_static_01_reference_lifetime_02;
+pub mod _04_lifetimes_18_static_02_trait_bound;
 pub mod _04_lifetimes_19_elision;

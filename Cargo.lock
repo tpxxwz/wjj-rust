@@ -748,8 +748,10 @@ dependencies = [
 name = "tokio_01_hello_world"
 version = "0.0.1"
 dependencies = [
+ "bytes",
  "mini-redis",
  "tokio",
+ "wjj_lib",
 ]
 
 [[package]]

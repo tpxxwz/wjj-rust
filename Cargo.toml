@@ -1,0 +1,44 @@
+#https://doc.rust-lang.org/cargo/reference/workspaces.html
+#[workspace] — Defines a workspace.
+#    resolver — Sets the dependency resolver to use.
+#    members — Packages to include in the workspace.
+#    exclude — Packages to exclude from the workspace.
+#    default-members — Packages to operate on when a specific package wasn’t selected.
+#    package — Keys for inheriting in packages.
+#    dependencies — Keys for inheriting in package dependencies.
+#    lints — Keys for inheriting in package lints.
+#    metadata — Extra settings for external tools.
+#[patch] — Override dependencies.
+#[replace] — Override dependencies (deprecated).
+#[profile] — Compiler settings and optimizations.
+
+[workspace]
+resolver = "3"
+members = [
+    "wjj_lib",
+    "base/base_01_guide",
+    "base/base_01_guide",
+    "base/base_02_extend",
+    "vendor/async/tokio/tokio_01_hello_world"
+]
+
+[workspace.package]
+edition = "2024"
+license = "MIT"
+rust-version = "1.91.1"
+
+[workspace.dependencies]
+wjj_lib = { path = "wjj_lib" }
+paste = "1.0.15"
+serde = "1.0.228"
+tokio = { version = "1.48.0", features = ["full"] }
+
+#[workspace.metadata]
+#ci = { pipeline = "github-actions" }
+#
+#[patch.crates-io]
+#serde = { git = "https://github.com/serde-rs/serde", branch = "main" }
+#
+#[profile.release]
+#opt-level = 3
+#lto = true

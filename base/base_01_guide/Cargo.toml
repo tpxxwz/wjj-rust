@@ -1,0 +1,10 @@
+[package]
+name = "base_01_guide"
+version = "0.0.1"
+edition = "2024"
+
+[dependencies]
+#wjj_lib.workspace = true
+wjj_lib = { workspace = true }
+rand = "0.10.0-rc.5"
+pretty_assertions = "1.4.1"

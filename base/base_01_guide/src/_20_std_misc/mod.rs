@@ -1,0 +1,16 @@
+pub mod _00_main;
+mod _01_threads;
+mod _01_threads_11_testcase_map_reduce;
+mod _02_channels;
+mod _03_path;
+mod _04_file_io;
+mod _04_file_io_11_open;
+mod _04_file_io_12_create;
+mod _04_file_io_13_read_lines;
+mod _05_child_processes;
+mod _05_child_processes_11_pipes;
+mod _05_child_processes_12_wait;
+mod _06_filesystem_operations;
+mod _07_program_arguments;
+mod _07_program_arguments_11_argument_parsing;
+mod _08_foreign_function_interface;

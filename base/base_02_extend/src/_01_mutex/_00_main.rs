@@ -31,6 +31,7 @@ fn main() {
         let counter_clone = Arc::clone(&counter);
         let handle = thread::spawn(move || {
             let mut num = counter_clone.lock().unwrap(); // 获取锁
+            // num 是MutexGuard对象 是锁的持有者，允许访问数据 可以通过 Deref 访问和修改数据 自动释放锁（RAII）
             *num += 1; // 修改共享数据
             println!("Thread number is {}", *num);
         });

@@ -1,4 +1,5 @@
 #![allow(unused, dead_code, unreachable_code, path_statements, unexpected_cfgs)]
 
-mod _01_mutex;
-mod _02_pin;
+mod _01_hello_world;
+mod _02_spawning;
+mod _03_shared_state_mutex;

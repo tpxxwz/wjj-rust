@@ -1,5 +1,5 @@
 [package]
-name = "tokio_01_hello_world"
+name = "vendor_async_tokio"
 version = "0.0.1"
 edition = "2024"
 

@@ -4,7 +4,6 @@ version = "0.0.1"
 edition = "2024"
 
 [dependencies]
-wjj_lib = { workspace = true }
 tokio.workspace = true
 mini-redis = "0.4.1"
 bytes = "1.11.0"

@@ -962,7 +962,6 @@ dependencies = [
  "bytes",
  "mini-redis",
  "tokio",
- "wjj_lib",
 ]
 
 [[package]]

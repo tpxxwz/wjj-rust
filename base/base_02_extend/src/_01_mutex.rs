@@ -23,7 +23,7 @@ use std::sync::{Arc, Mutex};
 use std::thread;
 
 #[wjj_lib::gen_test]
-fn main() {
+fn mutex_test() {
     let counter = Arc::new(Mutex::new(0)); // 共享计数器
     let mut handles = vec![];
 
@@ -43,11 +43,4 @@ fn main() {
     }
 
     println!("结果: {}", *counter.lock().unwrap());
-}
-
-//
-
-#[wjj_lib::gen_test]
-fn main1() {
-    println!("Thread number is haha");
 }

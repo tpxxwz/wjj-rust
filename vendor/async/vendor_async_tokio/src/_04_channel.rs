@@ -1,4 +1,5 @@
 use bytes::Bytes;
+use mini_redis::client;
 use tokio::sync::{broadcast, mpsc, oneshot, watch};
 use tokio::task;
 
@@ -98,26 +99,80 @@ async fn channel_watch() {
     tokio::time::sleep(tokio::time::Duration::from_secs(5)).await;
 }
 
+type Responder<T> = oneshot::Sender<mini_redis::Result<T>>;
 #[derive(Debug)]
 enum Command {
-    Get { key: String },
-    Set { key: String, val: Bytes },
+    Get {
+        key: String,
+        resp: Responder<Option<Bytes>>,
+    },
+    Set {
+        key: String,
+        val: Bytes,
+        resp: Responder<()>,
+    },
 }
 
-#[tokio::main]
-async fn main() {
+#[tokio::test]
+async fn channel_learn() {
     let (tx, mut rx) = mpsc::channel(32);
+
     let tx2 = tx.clone();
 
-    tokio::spawn(async move {
-        tx.send("sending from first handle").await.unwrap();
+    let manager = tokio::spawn(async move {
+        // Establish a connection to the server
+        let mut client = client::connect("127.0.0.1:6379").await.unwrap();
+
+        // Start receiving messages
+        while let Some(cmd) = rx.recv().await {
+            match cmd {
+                Command::Get { key, resp } => {
+                    let res = client.get(&key).await;
+                    // Ignore errors
+                    let _ = resp.send(res);
+                }
+                Command::Set { key, val, resp } => {
+                    let res = client.set(&key, val).await;
+                    // Ignore errors
+                    let _ = resp.send(res);
+                }
+            }
+        }
     });
 
-    tokio::spawn(async move {
-        tx2.send("sending from second handle").await.unwrap();
+    let t1 = tokio::spawn(async move {
+        let (resp_tx, resp_rx) = oneshot::channel();
+        let cmd = Command::Get {
+            key: "foo".to_string(),
+            resp: resp_tx,
+        };
+
+        // Send the GET request
+        tx.send(cmd).await.unwrap();
+
+        // Await the response
+        let res = resp_rx.await;
+        println!("GOT = {:?}", res);
     });
 
-    while let Some(message) = rx.recv().await {
-        println!("GOT = {}", message);
-    }
+    let t2 = tokio::spawn(async move {
+        let (resp_tx, resp_rx) = oneshot::channel();
+        let cmd = Command::Set {
+            key: "foo".to_string(),
+            val: "bar".into(),
+            resp: resp_tx,
+        };
+
+        // Send the SET request
+        tx2.send(cmd).await.unwrap();
+
+        // Await the response
+        let res = resp_rx.await;
+        println!("GOT = {:?}", res);
+        // The `move` keyword is used to **move** ownership of `rx` into the task.
+    });
+
+    t1.await.unwrap();
+    t2.await.unwrap();
+    manager.await.unwrap();
 }

@@ -21,7 +21,7 @@ fn are_you_on_linux() {
     println!("你**不是**在运行 Linux！");
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     are_you_on_linux();
 

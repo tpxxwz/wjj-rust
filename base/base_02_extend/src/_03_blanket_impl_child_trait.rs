@@ -16,7 +16,7 @@ impl Parent for MyStruct {
 //  blanket implementation 泛型实现 用一个 impl 块为一大类类型提供 trait 实现
 impl<T: Parent> Child for T {} // 能够自动让所有实现Parent trait的struct实现Child trait 能调用其中的默认方法
 // impl Child for MyStruct {} // 或者加上这行手动实现Child trait，也能调用 extra_method()
-#[wjj_lib::gen_test]
+#[test]
 fn blanket_implementation() {
     let obj = MyStruct;
     obj.do_something();

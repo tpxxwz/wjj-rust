@@ -42,7 +42,7 @@ impl<Unit> Add for Length<Unit> {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 指定 `one_foot` 具有虚类型参数 `Inch`。
     let one_foot:  Length<Inch> = Length(12.0, PhantomData);

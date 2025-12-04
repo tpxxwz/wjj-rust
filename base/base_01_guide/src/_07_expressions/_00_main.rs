@@ -1,6 +1,6 @@
 // 表达式
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // Rust 程序（主要）由一系列语句组成：
 

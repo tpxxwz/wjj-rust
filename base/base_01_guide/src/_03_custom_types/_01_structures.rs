@@ -34,7 +34,7 @@ struct Rectangle {
     bottom_right: Point,
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 使用字段初始化简写语法创建结构体
     let name = String::from("Peter");

@@ -11,7 +11,7 @@ fn foo() -> ! {
 fn some_fn() {
     ()
 }
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let _a: () = some_fn();
     println!("这个函数返回了，你可以看到这一行。");

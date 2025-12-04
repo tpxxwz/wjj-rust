@@ -28,7 +28,7 @@ fn print(result: AliasedResult<i32>) {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     print(multiply("10", "2"));
     print(multiply("t", "2"));

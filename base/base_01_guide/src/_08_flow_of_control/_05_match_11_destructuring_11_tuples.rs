@@ -1,6 +1,6 @@
 // 元组
 // 元组可以在 match 中按如下方式解构：
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let triple = (0, -2, 3);
     // TODO ^ 尝试为 `triple` 赋不同的值

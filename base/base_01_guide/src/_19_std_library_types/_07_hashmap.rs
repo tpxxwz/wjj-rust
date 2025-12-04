@@ -18,7 +18,7 @@ fn call(number: &str) -> &str {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let mut contacts = HashMap::new();
 

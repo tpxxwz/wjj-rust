@@ -8,7 +8,7 @@ fn drink(beverage: &str) {
     println!("来点清爽的{}就是我现在需要的。", beverage);
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     drink("水");
     drink("柠檬水");

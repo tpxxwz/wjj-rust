@@ -30,7 +30,7 @@ macro_rules! print_result {
     };
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     foo();
     bar();

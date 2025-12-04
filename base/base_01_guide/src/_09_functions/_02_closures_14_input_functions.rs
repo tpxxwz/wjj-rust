@@ -12,7 +12,7 @@ fn function() {
     println!("我是函数！");
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 定义一个满足 `Fn` 约束的闭包
     let closure = || println!("我是闭包！");

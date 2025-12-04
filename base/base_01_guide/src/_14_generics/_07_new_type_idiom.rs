@@ -25,7 +25,7 @@ fn is_adult(age: &Years) -> bool {
     age.0 >= 18
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let age = Years(25);
     let age_days = age.to_days();

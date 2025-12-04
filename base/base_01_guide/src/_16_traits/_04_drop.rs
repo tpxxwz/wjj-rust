@@ -18,7 +18,7 @@ impl Drop for Droppable {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main1() {
     let _a = Droppable { name: "a" };
 
@@ -82,7 +82,7 @@ impl Drop for TempFile {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main2() -> std::io::Result<()> {
     // 创建新作用域来演示丢弃行为
     {

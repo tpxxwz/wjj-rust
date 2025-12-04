@@ -38,7 +38,7 @@ impl Person {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let p = Person {
         job: Some(Job {

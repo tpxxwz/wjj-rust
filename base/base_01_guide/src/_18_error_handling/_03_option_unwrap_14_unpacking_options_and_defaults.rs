@@ -11,7 +11,7 @@
 #[derive(Debug)]
 enum Fruit { Apple, Orange, Banana, Kiwi, Lemon }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main1() {
     let apple = Some(Fruit::Apple);
     let orange = Some(Fruit::Orange);
@@ -32,7 +32,7 @@ fn main1() {
 // or_else() 可以链式调用，惰性求值，保持空值不变
 // 另一种选择是使用 or_else，它同样支持链式调用，并且采用惰性求值。以下是一个示例：
 
-#[wjj_lib::gen_test]
+#[test]
 fn main2() {
     let no_fruit: Option<Fruit> = None;
     let get_kiwi_as_fallback = || {
@@ -56,7 +56,7 @@ fn main2() {
 // 为确保 Option 包含一个值，我们可以使用 get_or_insert 来原地修改它，提供一个备选值。
 // 下面的例子展示了这一点。请注意，get_or_insert 会立即求值其参数，因此变量 apple 会被移动：
 
-#[wjj_lib::gen_test]
+#[test]
 fn main3() {
     let mut my_fruit: Option<Fruit> = None;
     let apple = Fruit::Apple;
@@ -72,7 +72,7 @@ fn main3() {
 // get_or_insert_with() 惰性求值，原地修改空值
 // 我们可以向 get_or_insert_with 传递一个闭包，而不是显式提供一个备选值。示例如下：
 
-#[wjj_lib::gen_test]
+#[test]
 fn main4() {
     let mut my_fruit: Option<Fruit> = None;
     let get_lemon_as_fallback = || {

@@ -960,6 +960,7 @@ name = "vendor_async_tokio"
 version = "0.0.1"
 dependencies = [
  "bytes",
+ "futures",
  "mini-redis",
  "tokio",
 ]

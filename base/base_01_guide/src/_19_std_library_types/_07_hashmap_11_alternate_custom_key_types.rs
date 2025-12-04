@@ -53,7 +53,7 @@ fn try_logon<'a>(accounts: &Accounts<'a>,
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main(){
     let mut accounts: Accounts = HashMap::new();
 

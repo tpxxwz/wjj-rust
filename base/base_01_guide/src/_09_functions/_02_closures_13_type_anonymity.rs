@@ -23,7 +23,7 @@ fn apply<F>(f: F) where
     f();
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let x = 7;
 

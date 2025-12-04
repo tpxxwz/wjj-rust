@@ -7,3 +7,4 @@ edition = "2024"
 tokio.workspace = true
 mini-redis = "0.4.1"
 bytes = "1.11.0"
+futures = "0.3.31"

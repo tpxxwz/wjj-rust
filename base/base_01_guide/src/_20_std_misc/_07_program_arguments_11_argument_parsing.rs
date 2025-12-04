@@ -19,7 +19,7 @@ match_args {{increase|decrease}} <整数>
     将给定的整数增加或减少 1。");
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let args: Vec<String> = env::args().collect();
 

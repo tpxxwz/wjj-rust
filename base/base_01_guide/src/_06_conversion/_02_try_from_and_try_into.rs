@@ -20,7 +20,7 @@ impl TryFrom<i32> for EvenNumber {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // TryFrom
 

@@ -15,7 +15,7 @@ macro_rules! say_hello {
     };
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 这个调用将展开成 `println!("Hello!")`
     say_hello!()

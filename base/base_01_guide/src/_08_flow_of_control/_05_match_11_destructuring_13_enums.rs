@@ -16,7 +16,7 @@ enum Color {
     CMYK(u32, u32, u32, u32),
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let color = Color::RGB(122, 17, 40);
     // TODO ^ 尝试为 `color` 使用不同的变体

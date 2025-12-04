@@ -14,7 +14,7 @@ use std::fs::File;
 use std::io::prelude::*;
 use std::path::Path;
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let path = Path::new("lorem_ipsum.txt");
     let display = path.display();

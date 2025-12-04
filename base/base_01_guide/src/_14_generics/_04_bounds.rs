@@ -41,7 +41,7 @@ fn print_debug<T: Debug>(t: &T) {
 // 都可以访问 `HasArea` 的 `area` 方法。
 fn area<T: HasArea>(t: &T) -> f64 { t.area() }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let rectangle = Rectangle { length: 3.0, height: 4.0 };
     let _triangle = Triangle  { length: 3.0, height: 4.0 };

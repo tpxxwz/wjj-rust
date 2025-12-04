@@ -15,7 +15,7 @@ fn division(dividend: i32, divisor: i32) -> i32 {
 }
 
 // `main` 任务
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 堆分配的整数
     let _x = Box::new(0i32);

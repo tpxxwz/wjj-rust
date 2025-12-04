@@ -9,7 +9,7 @@ fn function() {
     println!("调用了 `function()`");
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // super::my::function();
     my::function();

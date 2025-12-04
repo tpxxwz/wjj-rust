@@ -12,7 +12,7 @@ fn double_first(vec: Vec<&str>) -> i32 {
     2 * first.parse::<i32>().unwrap() // 生成错误 2
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let numbers = vec!["42", "93", "18"];
     let empty = vec![];

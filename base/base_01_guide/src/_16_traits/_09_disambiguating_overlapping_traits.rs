@@ -34,7 +34,7 @@ impl AgeWidget for Form {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let form = Form {
         username: "rustacean".to_owned(),

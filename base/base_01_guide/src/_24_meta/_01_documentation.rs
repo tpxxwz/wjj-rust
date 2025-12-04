@@ -40,7 +40,7 @@ impl Person {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let john = Person::new("John");
 

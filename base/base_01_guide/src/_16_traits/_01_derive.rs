@@ -29,7 +29,7 @@ impl Inches {
 // `Seconds`，一个没有额外属性的元组结构体
 struct Seconds(i32);
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let _one_second = Seconds(1);
 

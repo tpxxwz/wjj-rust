@@ -29,7 +29,7 @@ struct Single(A);
 // 包括上面定义的具体类型 `A`
 struct SingleGen<T>(T);
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // `Single` 是具体类型，明确接受 `A`
     let _s = Single(A);

@@ -14,7 +14,7 @@
 
 use std::path::Path;
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 从 `&'static str` 创建一个 `Path`
     let path = Path::new(".");

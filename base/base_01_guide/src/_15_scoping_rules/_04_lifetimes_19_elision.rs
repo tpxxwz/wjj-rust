@@ -20,7 +20,7 @@ fn elided_pass(x: &i32) -> &i32 { x }
 
 fn annotated_pass<'a>(x: &'a i32) -> &'a i32 { x }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let x = 3;
 

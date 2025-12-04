@@ -12,7 +12,7 @@
 // `i` 的生命周期最长，因为它的作用域完全包含了 `borrow1` 和 `borrow2`。
 // `borrow1` 相对于 `borrow2` 的持续时间是无关紧要的，因为它们是不相交的。
 // （译注：为避免中文的宽度显示问题，下面注释没有翻译）
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let i = 3; // Lifetime for `i` starts. ─────────────────┐
     //                                                           │

@@ -7,7 +7,7 @@ use std::time::Duration;
 use std::sync::Arc;
 use std::thread;
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 在这个变量声明中指定了它的值。
     let apple = Arc::new("同一个苹果");

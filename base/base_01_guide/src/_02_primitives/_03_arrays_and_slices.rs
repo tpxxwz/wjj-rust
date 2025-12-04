@@ -15,7 +15,7 @@ fn analyze_slice(slice: &[i32]) {
     println!("切片有 {} 个元素", slice.len());
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 固定大小的数组（类型签名是多余的）。
     let xs: [i32; 5] = [1, 2, 3, 4, 5];

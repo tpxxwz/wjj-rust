@@ -3,7 +3,7 @@
 
 use std::process::Command;
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let mut child = Command::new("sleep").arg("5").spawn().unwrap();
     let _result = child.wait().unwrap();

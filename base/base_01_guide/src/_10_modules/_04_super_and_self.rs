@@ -47,7 +47,7 @@ mod my {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     my::indirect_call();
 }

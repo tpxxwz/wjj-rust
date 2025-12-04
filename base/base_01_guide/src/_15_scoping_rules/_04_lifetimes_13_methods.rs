@@ -11,7 +11,7 @@ impl Owner {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let mut owner = Owner(18);
 

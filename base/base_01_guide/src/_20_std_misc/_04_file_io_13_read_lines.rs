@@ -34,7 +34,7 @@ use std::fs::File;
 use std::io::{self, BufRead};
 use std::path::Path;
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 文件 hosts.txt 必须存在于当前路径下
     if let Ok(lines) = read_lines("./hosts.txt") {

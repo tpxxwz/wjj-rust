@@ -4,7 +4,7 @@
 // 在这种情况下，父级变量之后不能作为一个整体使用，但是仍然可以使用只被引用（而不是被移动）的部分。
 // 注意，实现了 Drop 特质 的类型不能被部分移动，因为其 drop 方法会在之后将其作为整体使用。
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     #[derive(Debug)]
     struct Person {

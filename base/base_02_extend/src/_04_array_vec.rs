@@ -1,4 +1,4 @@
-#[wjj_lib::gen_test]
+#[test]
 fn array_test() {
     // 1. 创建一个固定长度数组
     let mut arr: [i32; 5] = [10, 20, 30, 40, 50];
@@ -42,7 +42,7 @@ fn array_test() {
     println!("数组长度: {}", arr.len());
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn micro_vec_test() {
     // 1. 列举多个元素
     let v1 = vec![1, 2, 3, 4];
@@ -69,7 +69,7 @@ fn micro_vec_test() {
     println!("mixed: {:?}", mixed);
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn vec_test() {
     // 1. 创建 Vec
     let empty: Vec<i32> = Vec::new();

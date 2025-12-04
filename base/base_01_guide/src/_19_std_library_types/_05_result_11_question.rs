@@ -62,7 +62,7 @@ mod checked {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     checked::op(1.0, 10.0);
 }

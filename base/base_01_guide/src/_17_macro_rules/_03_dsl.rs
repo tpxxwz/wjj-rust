@@ -14,7 +14,7 @@ macro_rules! calculate {
     };
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     calculate! {
         eval 1 + 2 // 嘿嘿，`eval` 可不是 Rust 的关键字哦！

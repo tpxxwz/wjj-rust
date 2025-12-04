@@ -9,7 +9,7 @@ fn double_first1(vec: Vec<&str>) -> Option<Result<i32, ParseIntError>> {
     })
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main1() {
     let numbers = vec!["42", "93", "18"];
     let empty = vec![];
@@ -35,7 +35,7 @@ fn double_first2(vec: Vec<&str>) -> Result<Option<i32>, ParseIntError> {
     opt.transpose()
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main2() {
     let numbers = vec!["42", "93", "18"];
     let empty = vec![];

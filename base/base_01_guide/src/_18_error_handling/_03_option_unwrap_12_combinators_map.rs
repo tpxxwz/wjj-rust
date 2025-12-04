@@ -54,7 +54,7 @@ fn eat(food: Option<Cooked>) {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let apple = Some(Food::Apple);
     let carrot = Some(Food::Carrot);

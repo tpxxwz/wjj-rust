@@ -9,7 +9,7 @@
 
 use std::rc::Rc;
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let rc_examples = "Rc 示例".to_string();
     {

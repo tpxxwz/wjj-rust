@@ -34,7 +34,7 @@ fn drink(drink: Option<&str>) {
     println!("我超爱{}！！！！！", inside);
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let water  = Some("水");
     let lemonade = Some("柠檬水");

@@ -4,7 +4,7 @@
 
 struct Point { x: i32, y: i32, z: i32 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let mut point = Point { x: 0, y: 0, z: 0 };
 

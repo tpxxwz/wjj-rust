@@ -6,7 +6,7 @@ fn conditional_function() {
     println!("条件满足！");
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 下一行的注释解开 用rustc --cfg some_condition的命令执行
     // conditional_function();

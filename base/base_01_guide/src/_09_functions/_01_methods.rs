@@ -76,7 +76,7 @@ impl Pair {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let rectangle = Rectangle {
         // 使用双冒号调用关联函数

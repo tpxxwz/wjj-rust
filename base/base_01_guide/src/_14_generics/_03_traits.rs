@@ -20,7 +20,7 @@ impl<T, U> DoubleDrop<T> for U {
     fn double_drop(self, _: T) {}
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let empty = Empty;
     let null  = Null;

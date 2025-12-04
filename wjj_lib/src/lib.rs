@@ -3,6 +3,8 @@ use proc_macro::TokenStream;
 use quote::{format_ident, quote};
 use syn::{ItemFn, parse_macro_input};
 
+// 直接运行测试会不显示println!的 运行时候需要加上 --nocapture
+// 或者加环境变量 RUST_TEST_NOCAPTURE=1
 #[proc_macro_attribute]
 pub fn gen_test(_attr: TokenStream, item: TokenStream) -> TokenStream {
     let mut input = parse_macro_input!(item as ItemFn);

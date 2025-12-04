@@ -7,7 +7,7 @@ use std::fs::File;
 use std::io::prelude::*;
 use std::path::Path;
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 创建指向目标文件的路径
     let path = Path::new("hello.txt");

@@ -7,7 +7,7 @@ enum Temperature {
     Fahrenheit(i32),
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let temperature = Temperature::Celsius(35);
     // ^ TODO：尝试为 `temperature` 赋予不同的值

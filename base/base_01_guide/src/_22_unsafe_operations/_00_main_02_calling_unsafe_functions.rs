@@ -4,7 +4,7 @@
 
 use std::slice;
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let some_vector = vec![1, 2, 3, 4];
 

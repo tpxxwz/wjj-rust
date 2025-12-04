@@ -8,7 +8,7 @@ type NanoSecond = u64;
 type Inch = u64;
 type U64 = u64;
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // `NanoSecond` = `Inch` = `U64` = `u64`。
     let nanoseconds: NanoSecond = 5 as u64;

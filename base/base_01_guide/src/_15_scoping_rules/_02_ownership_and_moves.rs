@@ -13,7 +13,7 @@ fn destroy_box(c: Box<i32>) {
     // `c` 被销毁，内存被释放
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // **栈**分配的整数
     let x = 5u32;

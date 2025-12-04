@@ -63,7 +63,7 @@ impl Animal for Sheep {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 在这种情况下需要类型标注
     let mut dolly: Sheep = Animal::new("多莉");

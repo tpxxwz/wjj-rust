@@ -32,7 +32,7 @@ fn pass_x<'a, 'b>(x: &'a i32, _: &'b i32) -> &'a i32 { x }
 // 这里的 `&String::from("foo")` 会创建一个 `String`，然后创建一个引用。
 // 接着，在退出作用域时数据被丢弃，导致返回一个指向无效数据的引用。
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let x = 7;
     let y = 9;

@@ -1,7 +1,7 @@
 // 结构体
 // 同样，struct 可以按如下方式解构：
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     struct Foo {
         x: (u32, u32),

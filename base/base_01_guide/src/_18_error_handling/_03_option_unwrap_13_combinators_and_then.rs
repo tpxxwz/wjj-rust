@@ -57,7 +57,7 @@ fn eat(food: Food, day: Day) {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let (cordon_bleu, steak, sushi) = (Food::CordonBleu, Food::Steak, Food::Sushi);
 

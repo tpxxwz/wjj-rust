@@ -36,7 +36,7 @@ fn apply_to_3<F>(f: F) -> i32 where
     f(3)
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     use std::mem;
 

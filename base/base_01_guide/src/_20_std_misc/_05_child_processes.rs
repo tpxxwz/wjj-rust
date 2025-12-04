@@ -3,7 +3,7 @@
 
 use std::process::Command;
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let output = Command::new("rustc")
         .arg("--version")

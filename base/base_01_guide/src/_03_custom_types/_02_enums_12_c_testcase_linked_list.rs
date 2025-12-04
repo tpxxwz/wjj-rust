@@ -59,7 +59,7 @@ impl List {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 创建空链表
     let mut list = List::new();

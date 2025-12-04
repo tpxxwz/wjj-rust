@@ -18,7 +18,7 @@ struct PhantomStruct<A, B> { first: A, phantom: PhantomData<B> }
 // 注意：为泛型类型 `A` 分配了存储空间，但没有为 `B` 分配。
 //       因此，`B` 不能用于计算。
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 这里，`f32` 和 `f64` 是隐藏参数。
     // PhantomTuple 类型指定为 `<char, f32>`。

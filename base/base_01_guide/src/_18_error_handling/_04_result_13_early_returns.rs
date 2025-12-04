@@ -27,7 +27,7 @@ fn print(result: Result<i32, ParseIntError>) {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     print(multiply("10", "2"));
     print(multiply("t", "2"));

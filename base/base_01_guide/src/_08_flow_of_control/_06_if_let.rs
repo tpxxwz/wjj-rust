@@ -17,7 +17,7 @@ enum Foo {
     Qux(u32)
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 对于这种情况，if let 更加简洁，而且还允许指定各种失败时的处理选项：
 

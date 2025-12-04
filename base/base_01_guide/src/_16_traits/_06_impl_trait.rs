@@ -67,7 +67,7 @@ fn combine_vecs(
     v.into_iter().chain(u.into_iter()).cycle()
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main1() {
     let v1 = vec![1, 2, 3];
     let v2 = vec![4, 5];
@@ -90,7 +90,7 @@ fn make_adder_function(y: i32) -> impl Fn(i32) -> i32 {
     closure
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main2() {
     let plus_one = make_adder_function(1);
     assert_eq!(plus_one(2), 3);
@@ -107,7 +107,7 @@ fn double_positives<'a>(numbers: &'a Vec<i32>) -> impl Iterator<Item = i32> + 'a
         .map(|x| x * 2)
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main3() {
     let singles = vec![-3, -2, 2, 3];
     let doubles = double_positives(&singles);

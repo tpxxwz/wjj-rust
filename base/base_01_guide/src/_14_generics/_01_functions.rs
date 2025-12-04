@@ -31,7 +31,7 @@ fn gen_spec_i32(_s: SGen<i32>) {}
 // 由于 `SGen<T>` 前面有 `<T>`，所以这个函数是关于 `T` 的泛型函数
 fn generic<T>(_s: SGen<T>) {}
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 使用非泛型函数
     reg_fn(S(A));          // 具体类型

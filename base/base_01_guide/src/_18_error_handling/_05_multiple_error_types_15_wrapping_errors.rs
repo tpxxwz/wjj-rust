@@ -70,7 +70,7 @@ fn print(result: Result<i32>) {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let numbers = vec!["42", "93", "18"];
     let empty = vec![];

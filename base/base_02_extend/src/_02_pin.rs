@@ -56,7 +56,7 @@ impl Future for MyFuture {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn use_pin() {
     let mut f = Box::pin(MyFuture::new("Hello Pin!".into()));
     f.as_mut().init(); // 初始化自引用
@@ -89,7 +89,7 @@ impl Future for BadFuture {
     }
 }
 // UB 是 Undefined Behavior
-#[wjj_lib::gen_test]
+#[test]
 fn without_pin() {
     let mut f = BadFuture::new("Hello".into());
     f.init();

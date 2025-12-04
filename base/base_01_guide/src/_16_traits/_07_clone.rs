@@ -11,7 +11,7 @@ struct Unit;
 #[derive(Clone, Debug)]
 struct Pair(Box<i32>, Box<i32>);
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 实例化 `Unit`
     let unit = Unit;

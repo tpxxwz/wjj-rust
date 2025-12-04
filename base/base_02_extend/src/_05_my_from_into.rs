@@ -48,7 +48,7 @@ fn main() {
     println!("Vec<u8>: {:?}", v);
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn from_into_no_blanket_impl() {
     let s: String = "hello".my_into_string();
     let v: Vec<u8> = "hello".my_into_vec();
@@ -97,7 +97,7 @@ impl MyFrom<&str> for Vec<u8> {
         value.as_bytes().to_vec()
     }
 }
-#[wjj_lib::gen_test]
+#[test]
 fn my_from_into() {
     let s: String = "hello".my_into();
     let v: Vec<u8> = "hello".my_into();

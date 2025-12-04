@@ -17,7 +17,7 @@ impl Blue for BlueJay {}
 fn red<T: Red>(_: &T)   -> &'static str { "红色" }
 fn blue<T: Blue>(_: &T) -> &'static str { "蓝色" }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let cardinal = Cardinal;
     let blue_jay = BlueJay;

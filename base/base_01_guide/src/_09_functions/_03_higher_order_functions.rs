@@ -7,7 +7,7 @@ fn is_odd(n: u32) -> bool {
     n % 2 == 1
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     println!("找出所有平方为奇数且小于 1000 的数字之和");
     let upper = 1000;

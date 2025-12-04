@@ -29,7 +29,7 @@ fn boxed_origin() -> Box<Point> {
     Box::new(Point { x: 0.0, y: 0.0 })
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // （所有的类型标注都不是必须的）
     // 栈分配的变量

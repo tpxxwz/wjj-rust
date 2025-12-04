@@ -8,7 +8,7 @@ use std::thread;
 
 static NTHREADS: i32 = 3;
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 通道有两个端点：`Sender<T>` 和 `Receiver<T>`，
     // 其中 `T` 是要传输的消息类型

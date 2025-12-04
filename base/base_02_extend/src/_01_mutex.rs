@@ -22,7 +22,7 @@
 use std::sync::{Arc, Mutex};
 use std::thread;
 
-#[wjj_lib::gen_test]
+#[test]
 fn mutex_test() {
     let counter = Arc::new(Mutex::new(0)); // 共享计数器
     let mut handles = vec![];

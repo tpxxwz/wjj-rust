@@ -42,7 +42,7 @@ fn random_animal(random_number: f64) -> Box<dyn Animal> {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let random_number = 0.234;
     let animal = random_animal(random_number);

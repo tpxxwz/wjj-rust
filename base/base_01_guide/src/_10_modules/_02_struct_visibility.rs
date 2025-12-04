@@ -24,7 +24,7 @@ mod my {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 具有公有字段的公有结构体可以正常构造
     let open_box = my::OpenBox { contents: "公开信息" };

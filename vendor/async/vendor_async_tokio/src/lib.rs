@@ -6,3 +6,4 @@ mod _03_shared_state_mutex;
 mod _04_channel;
 mod _05_io;
 mod _06_framing;
+ pub mod _07_async_in_depth;

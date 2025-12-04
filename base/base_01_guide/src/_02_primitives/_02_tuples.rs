@@ -15,7 +15,7 @@ fn reverse(pair: (i32, bool)) -> (bool, i32) {
 #[derive(Debug)]
 struct Matrix(f32, f32, f32, f32);
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 一个包含多种不同类型的元组。
     let long_tuple = (1u8, 2u16, 3u32, 4u64,

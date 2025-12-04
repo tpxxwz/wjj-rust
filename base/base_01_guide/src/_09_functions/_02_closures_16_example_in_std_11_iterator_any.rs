@@ -15,7 +15,7 @@ pub trait Iterator {
         F: FnMut(Self::Item) -> bool;
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let vec1 = vec![1, 2, 3];
     let vec2 = vec![4, 5, 6];

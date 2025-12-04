@@ -36,7 +36,7 @@ fn touch(path: &Path) -> io::Result<()> {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     println!("`mkdir a`");
     // 创建目录，返回 `io::Result<()>`

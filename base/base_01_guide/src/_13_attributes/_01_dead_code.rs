@@ -9,7 +9,7 @@ fn unused_function() {}
 fn noisy_unused_function() {}
 // FIXME ^ 添加一个属性来抑制警告
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     used_function();
 }

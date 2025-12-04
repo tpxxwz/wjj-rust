@@ -8,7 +8,7 @@ use std::process::{Command, Stdio};
 static PANGRAM: &'static str =
     "the quick brown fox jumps over the lazy dog\n";
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 启动 `wc` 命令
     let mut cmd = if cfg!(target_family = "windows") {

@@ -20,7 +20,7 @@ enum Either<'a> {
     Ref(&'a i32),
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let x = 18;
     let y = 15;

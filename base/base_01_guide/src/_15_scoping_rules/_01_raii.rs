@@ -12,7 +12,7 @@ fn create_box() {
     // `_box1` 在此处被销毁，内存被释放
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main1() {
     // 在堆上分配一个整数
     let _box2 = Box::new(5i32);
@@ -69,7 +69,7 @@ impl Drop for ToDrop {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main2() {
     let x = ToDrop;
     println!("创建了一个 ToDrop！");

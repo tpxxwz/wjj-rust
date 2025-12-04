@@ -7,7 +7,7 @@
 // 通过可变引用：&mut T
 // 通过值：T
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 闭包优先通过引用捕获变量，仅在必要时才使用更底部的的捕获方式。
     use std::mem;

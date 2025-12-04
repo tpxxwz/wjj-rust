@@ -28,7 +28,7 @@ fn print_ref<'a, T>(t: &'a T) where
     println!("`print_ref`: t 是 {:?}", t);
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let x = 7;
     let ref_x = Ref(&x);

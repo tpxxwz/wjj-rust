@@ -6,7 +6,7 @@
 // 抑制所有由溢出转换引起的警告。
 #![allow(overflowing_literals)]
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let decimal = 65.4321_f32;
 

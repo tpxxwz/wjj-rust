@@ -13,7 +13,7 @@ fn compare_types<T: Debug, U: Debug>(t: &T, u: &U) {
     println!("u：`{:?}`", u);
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let string = "words";
     let array = [1, 2, 3];

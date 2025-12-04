@@ -30,7 +30,7 @@ fn inspect(event: WebEvent) {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main1() {
     let pressed = WebEvent::KeyPress('x');
     // `to_owned()` 从字符串切片创建一个拥有所有权的 `String`。
@@ -57,7 +57,7 @@ enum VeryVerboseEnumOfThingsToDoWithNumbers {
 // 创建类型别名
 type Operations = VeryVerboseEnumOfThingsToDoWithNumbers;
 
-#[wjj_lib::gen_test]
+#[test]
 fn main2() {
     // 我们可以通过别名引用每个变体，而不是使用又长又不便的名称。
     let x = Operations::Add;

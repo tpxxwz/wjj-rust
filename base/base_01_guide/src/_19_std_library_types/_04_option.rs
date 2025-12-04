@@ -28,7 +28,7 @@ fn try_division(dividend: i32, divisor: i32) {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     try_division(4, 2);
     try_division(1, 0);

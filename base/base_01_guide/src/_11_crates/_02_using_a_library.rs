@@ -4,7 +4,7 @@
 
 // extern crate rary; // Rust 2015 版本或更早版本可能需要此声明
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 下一行的注释解开 用rustc --extern的命令执行
     // rary::public_function();

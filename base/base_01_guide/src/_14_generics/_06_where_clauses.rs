@@ -31,7 +31,7 @@ impl<T> PrintInOption for T where
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let vec = vec![1, 2, 3];
 

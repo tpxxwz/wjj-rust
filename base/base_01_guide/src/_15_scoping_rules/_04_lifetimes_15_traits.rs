@@ -16,7 +16,7 @@ impl<'a> Default for Borrowed<'a> {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let b: Borrowed = Default::default();
     println!("b 是 {:?}", b);

@@ -4,7 +4,7 @@
 
 use std::env;
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let args: Vec<String> = env::args().collect();
 

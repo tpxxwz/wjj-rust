@@ -17,7 +17,7 @@
 use std::thread;
 
 // 这是主线程
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
 
     // 这是我们要处理的数据

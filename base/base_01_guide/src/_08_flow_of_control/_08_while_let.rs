@@ -1,6 +1,6 @@
 // while let
 // 与 if let 类似，while let 可以简化繁琐的 match 序列。让我们来看一个递增 i 的例子：
-#[wjj_lib::gen_test]
+#[test]
 fn main1() {
     // 创建 `Option<i32>` 类型的 `optional`
     let mut optional = Some(0);
@@ -28,7 +28,7 @@ fn main1() {
 }
 
 // 使用 while let 可以让这个序列更加简洁：
-#[wjj_lib::gen_test]
+#[test]
 fn main2() {
     // 创建 `Option<i32>` 类型的 `optional`
     let mut optional = Some(0);
@@ -47,4 +47,3 @@ fn main2() {
     }
     // ^ `if let` 可以有额外的 `else`/`else if` 子句，`while let` 则没有。
 }
-

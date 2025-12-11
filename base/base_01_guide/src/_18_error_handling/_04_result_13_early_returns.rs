@@ -8,12 +8,12 @@ use std::num::ParseIntError;
 
 fn multiply(first_number_str: &str, second_number_str: &str) -> Result<i32, ParseIntError> {
     let first_number = match first_number_str.parse::<i32>() {
-        Ok(first_number)  => first_number,
+        Ok(first_number) => first_number,
         Err(e) => return Err(e),
     };
 
     let second_number = match second_number_str.parse::<i32>() {
-        Ok(second_number)  => second_number,
+        Ok(second_number) => second_number,
         Err(e) => return Err(e),
     };
 
@@ -22,12 +22,12 @@ fn multiply(first_number_str: &str, second_number_str: &str) -> Result<i32, Pars
 
 fn print(result: Result<i32, ParseIntError>) {
     match result {
-        Ok(n)  => println!("n 是 {}", n),
+        Ok(n) => println!("n 是 {}", n),
         Err(e) => println!("错误：{}", e),
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     print(multiply("10", "2"));
     print(multiply("t", "2"));
@@ -36,4 +36,3 @@ fn main() {
 // 到目前为止，我们已经学会了使用组合器和提前返回来显式处理错误。
 // 虽然我们通常想避免 panic，但显式处理所有错误是很繁琐的。
 // 在下一节中，我们将介绍 ? 运算符，用于我们只需要 unwrap 而不可能引发 panic 的情况。
-

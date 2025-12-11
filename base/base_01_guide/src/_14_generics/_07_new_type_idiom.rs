@@ -3,7 +3,6 @@
 //
 // 例如，一个检查年龄（以年为单位）的年龄验证函数，必须接收 Years 类型的值。
 
-
 struct Years(i64);
 
 struct Days(i64);
@@ -25,7 +24,7 @@ fn is_adult(age: &Years) -> bool {
     age.0 >= 18
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let age = Years(25);
     let age_days = age.to_days();
@@ -41,5 +40,3 @@ fn main() {
     let years_as_primitive_1: i64 = years.0; // 元组语法
     let Years(years_as_primitive_2) = years; // 解构语法
 }
-
-

@@ -14,7 +14,7 @@ pub trait Iterator {
         P: FnMut(&Self::Item) -> bool;
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let vec1 = vec![1, 2, 3];
     let vec2 = vec![4, 5, 6];
@@ -55,5 +55,3 @@ fn main() {
     let index_of_first_negative_number = vec.into_iter().position(|x| x < 0);
     assert_eq!(index_of_first_negative_number, None);
 }
-
-

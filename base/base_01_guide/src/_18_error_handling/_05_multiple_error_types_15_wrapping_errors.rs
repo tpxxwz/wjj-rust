@@ -3,8 +3,8 @@
 
 use std::error;
 use std::error::Error;
-use std::num::ParseIntError;
 use std::fmt;
+use std::num::ParseIntError;
 
 type Result<T> = std::result::Result<T, DoubleError>;
 
@@ -19,11 +19,9 @@ enum DoubleError {
 impl fmt::Display for DoubleError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         match *self {
-            DoubleError::EmptyVec =>
-                write!(f, "请使用至少包含一个元素的向量"),
+            DoubleError::EmptyVec => write!(f, "请使用至少包含一个元素的向量"),
             // 包装的错误包含额外信息，可通过 source() 方法获取。
-            DoubleError::Parse(..) =>
-                write!(f, "提供的字符串无法解析为整数"),
+            DoubleError::Parse(..) => write!(f, "提供的字符串无法解析为整数"),
         }
     }
 }
@@ -60,17 +58,17 @@ fn double_first(vec: Vec<&str>) -> Result<i32> {
 
 fn print(result: Result<i32>) {
     match result {
-        Ok(n)  => println!("第一个数的两倍是 {}", n),
+        Ok(n) => println!("第一个数的两倍是 {}", n),
         Err(e) => {
             println!("错误：{}", e);
             if let Some(source) = e.source() {
                 println!("  错误原因：{}", source);
             }
-        },
+        }
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let numbers = vec!["42", "93", "18"];
     let empty = vec![];
@@ -80,4 +78,3 @@ fn main() {
     print(double_first(empty));
     print(double_first(strings));
 }
-

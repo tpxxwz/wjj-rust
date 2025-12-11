@@ -29,7 +29,7 @@ struct Single(A);
 // 包括上面定义的具体类型 `A`
 struct SingleGen<T>(T);
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // `Single` 是具体类型，明确接受 `A`
     let _s = Single(A);
@@ -40,8 +40,7 @@ fn main() {
     let _char: SingleGen<char> = SingleGen('a');
 
     // `SingleGen` 也可以隐式指定类型参数：
-    let _t    = SingleGen(A); // 使用上面定义的 `A`
-    let _i32  = SingleGen(6); // 使用 `i32`
+    let _t = SingleGen(A); // 使用上面定义的 `A`
+    let _i32 = SingleGen(6); // 使用 `i32`
     let _char = SingleGen('a'); // 使用 `char`
 }
-

@@ -30,7 +30,7 @@ fn cos(z: Complex) -> Complex {
     unsafe { ccosf(z) }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // z = -1 + 0i
     let z = Complex { re: -1., im: 0. };
@@ -61,5 +61,3 @@ impl fmt::Debug for Complex {
         }
     }
 }
-
-

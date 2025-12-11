@@ -61,7 +61,7 @@ fn difference<C: Contains>(container: &C) -> i32 {
     container.last() - container.first()
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let number_1 = 3;
     let number_2 = 10;
@@ -79,5 +79,3 @@ fn main() {
 
     println!("差值为：{}", difference(&container));
 }
-
-

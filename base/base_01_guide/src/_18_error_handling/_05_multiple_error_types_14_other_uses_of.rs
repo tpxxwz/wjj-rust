@@ -39,12 +39,12 @@ fn double_first(vec: Vec<&str>) -> Result<i32> {
 
 fn print(result: Result<i32>) {
     match result {
-        Ok(n)  => println!("第一个数的两倍是 {}", n),
+        Ok(n) => println!("第一个数的两倍是 {}", n),
         Err(e) => println!("错误：{}", e),
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let numbers = vec!["42", "93", "18"];
     let empty = vec![];
@@ -54,4 +54,3 @@ fn main() {
     print(double_first(empty));
     print(double_first(strings));
 }
-

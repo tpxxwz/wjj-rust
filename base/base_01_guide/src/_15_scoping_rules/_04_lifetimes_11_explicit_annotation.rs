@@ -34,7 +34,7 @@ fn failed_borrow<'a>() {
     // 短生命周期无法强制转换为长生命周期。
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 创建将要被借用的变量。
     let (four, nine) = (4, 9);
@@ -50,4 +50,3 @@ fn main() {
     // 但 `'a` 实际上更长。
     // 因为生命周期从未被约束，它默认为 `'static`。
 }
-

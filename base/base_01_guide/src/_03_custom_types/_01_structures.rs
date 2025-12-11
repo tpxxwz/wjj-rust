@@ -34,7 +34,7 @@ struct Rectangle {
     bottom_right: Point,
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 使用字段初始化简写语法创建结构体
     let name = String::from("Peter");
@@ -53,18 +53,27 @@ fn main() {
 
     // 使用结构体更新语法创建新的点，
     // 复用之前创建的点的字段
-    let bottom_right = Point { x: 10.3, ..another_point };
+    let bottom_right = Point {
+        x: 10.3,
+        ..another_point
+    };
 
     // `bottom_right.y` 与 `another_point.y` 相同，
     // 因为我们使用了 `another_point` 的该字段
     println!("第二个点：({}, {})", bottom_right.x, bottom_right.y);
 
     // 使用 `let` 绑定解构点
-    let Point { x: left_edge, y: top_edge } = point;
+    let Point {
+        x: left_edge,
+        y: top_edge,
+    } = point;
 
     let _rectangle = Rectangle {
         // 结构体实例化也是一个表达式
-        top_left: Point { x: left_edge, y: top_edge },
+        top_left: Point {
+            x: left_edge,
+            y: top_edge,
+        },
         bottom_right: bottom_right,
     };
 
@@ -82,4 +91,3 @@ fn main() {
 
     println!("pair 包含 {:?} 和 {:?}", integer, decimal);
 }
-

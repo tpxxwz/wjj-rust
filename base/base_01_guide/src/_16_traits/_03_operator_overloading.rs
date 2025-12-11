@@ -45,9 +45,8 @@ impl ops::Add<Foo> for Bar {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     println!("Foo + Bar = {:?}", Foo + Bar);
     println!("Bar + Foo = {:?}", Bar + Foo);
 }
-

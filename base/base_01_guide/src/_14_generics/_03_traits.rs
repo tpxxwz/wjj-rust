@@ -20,10 +20,10 @@ impl<T, U> DoubleDrop<T> for U {
     fn double_drop(self, _: T) {}
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let empty = Empty;
-    let null  = Null;
+    let null = Null;
 
     // 释放 `empty` 和 `null` 的内存。
     empty.double_drop(null);
@@ -32,4 +32,3 @@ fn main() {
     //null;
     // ^ TODO：尝试取消这些行的注释。
 }
-

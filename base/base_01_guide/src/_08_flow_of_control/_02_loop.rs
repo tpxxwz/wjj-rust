@@ -3,7 +3,7 @@
 //
 // break 语句可以随时退出循环，而 continue 语句可以跳过当前迭代的剩余部分并开始下一次迭代。
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let mut count = 0u32;
 
@@ -30,4 +30,3 @@ fn main() {
         }
     }
 }
-

@@ -20,23 +20,26 @@
 
 // 这个函数接受一个闭包作为参数并调用它
 // <F> 表示 F 是一个"泛型类型参数"
-fn apply<F>(f: F) where
-// 这个闭包不接受输入也不返回任何值
-    F: FnOnce() {
+fn apply<F>(f: F)
+where
+    // 这个闭包不接受输入也不返回任何值
+    F: FnOnce(),
+{
     // ^ TODO：试着将其改为 `Fn` 或 `FnMut`
 
     f();
 }
 
 // 这个函数接受一个闭包并返回 `i32`
-fn apply_to_3<F>(f: F) -> i32 where
-// 这个闭包接受一个 `i32` 并返回一个 `i32`
-    F: Fn(i32) -> i32 {
-
+fn apply_to_3<F>(f: F) -> i32
+where
+    // 这个闭包接受一个 `i32` 并返回一个 `i32`
+    F: Fn(i32) -> i32,
+{
     f(3)
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     use std::mem;
 

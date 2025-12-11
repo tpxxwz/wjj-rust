@@ -7,7 +7,7 @@ fn is_odd(n: u32) -> bool {
     n % 2 == 1
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     println!("找出所有平方为奇数且小于 1000 的数字之和");
     let upper = 1000;
@@ -31,12 +31,11 @@ fn main() {
     println!("命令式风格：{}", acc);
 
     // 函数式方法
-    let sum_of_squared_odd_numbers: u32 =
-        (0..).map(|n| n * n)                             // 所有自然数的平方
-            .take_while(|&n_squared| n_squared < upper) // 小于上限
-            .filter(|&n_squared| is_odd(n_squared))     // 筛选奇数
-            .sum();                                     // 求和
+    let sum_of_squared_odd_numbers: u32 = (0..)
+        .map(|n| n * n) // 所有自然数的平方
+        .take_while(|&n_squared| n_squared < upper) // 小于上限
+        .filter(|&n_squared| is_odd(n_squared)) // 筛选奇数
+        .sum(); // 求和
     println!("函数式风格：{}", sum_of_squared_odd_numbers);
 }
 // Option 和 Iterator 实现了相当多的高阶函数。
-

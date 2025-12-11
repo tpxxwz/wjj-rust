@@ -15,8 +15,8 @@
 //     ...
 // }
 
-use std::ops::Add;
 use std::marker::PhantomData;
+use std::ops::Add;
 
 /// 创建空枚举以定义单位类型。
 #[derive(Debug, Clone, Copy)]
@@ -42,12 +42,12 @@ impl<Unit> Add for Length<Unit> {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 指定 `one_foot` 具有虚类型参数 `Inch`。
-    let one_foot:  Length<Inch> = Length(12.0, PhantomData);
+    let one_foot: Length<Inch> = Length(12.0, PhantomData);
     // `one_meter` 具有虚类型参数 `Mm`。
-    let one_meter: Length<Mm>   = Length(1000.0, PhantomData);
+    let one_meter: Length<Mm> = Length(1000.0, PhantomData);
 
     // `+` 调用我们为 `Length<Unit>` 实现的 `add()` 方法。
     //
@@ -64,4 +64,3 @@ fn main() {
     // 编译时错误：类型不匹配。
     //let one_feter = one_foot + one_meter;
 }
-

@@ -53,4 +53,4 @@ pub fn setup() {
 //     assert_eq!(adder::add(3, 2), 5);
 // }
 
-// 将模块创建为 tests/common.rs 也可行，但不推荐，因为测试运行器会将该文件视为测试 crate 并尝试运行其中的测试。
+// 将模块创建为 tests/core 也可行，但不推荐，因为测试运行器会将该文件视为测试 crate 并尝试运行其中的测试。

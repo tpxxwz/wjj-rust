@@ -3,9 +3,12 @@
 // 以下示例展示了几个这种用法有用的场景：
 
 #[derive(Clone, Copy)]
-struct Point { x: i32, y: i32 }
+struct Point {
+    x: i32,
+    y: i32,
+}
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let c = 'Q';
 
@@ -20,7 +23,10 @@ fn main() {
     // 在解构结构体时，`ref` 也是有效的。
     let _copy_of_x = {
         // `ref_to_x` 是 `point` 的 `x` 字段的引用。
-        let Point { x: ref ref_to_x, y: _ } = point;
+        let Point {
+            x: ref ref_to_x,
+            y: _,
+        } = point;
 
         // 返回 `point` 的 `x` 字段的副本。
         *ref_to_x
@@ -31,14 +37,20 @@ fn main() {
 
     {
         // `ref` 可以与 `mut` 配合使用来获取可变引用。
-        let Point { x: _, y: ref mut mut_ref_to_y } = mutable_point;
+        let Point {
+            x: _,
+            y: ref mut mut_ref_to_y,
+        } = mutable_point;
 
         // 通过可变引用修改 `mutable_point` 的 `y` 字段。
         *mut_ref_to_y = 1;
     }
 
     println!("point 的坐标是 ({}, {})", point.x, point.y);
-    println!("mutable_point 的坐标是 ({}, {})", mutable_point.x, mutable_point.y);
+    println!(
+        "mutable_point 的坐标是 ({}, {})",
+        mutable_point.x, mutable_point.y
+    );
 
     // 包含指针的可变元组
     let mut mutable_tuple = (Box::new(5u32), 3u32);
@@ -51,4 +63,3 @@ fn main() {
 
     println!("元组是 {:?}", mutable_tuple);
 }
-

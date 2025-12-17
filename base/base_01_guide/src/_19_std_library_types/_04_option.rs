@@ -24,11 +24,11 @@ fn try_division(dividend: i32, divisor: i32) {
         None => println!("{} / {} 失败！", dividend, divisor),
         Some(quotient) => {
             println!("{} / {} = {}", dividend, divisor, quotient)
-        },
+        }
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     try_division(4, 2);
     try_division(1, 0);
@@ -40,9 +40,12 @@ fn main() {
     let optional_float = Some(0f32);
 
     // 解包 `Some` 变体将提取其中包装的值。
-    println!("{:?} 解包后得到 {:?}", optional_float, optional_float.unwrap());
+    println!(
+        "{:?} 解包后得到 {:?}",
+        optional_float,
+        optional_float.unwrap()
+    );
 
     // 解包 `None` 变体将触发 `panic!`
     println!("{:?} 解包后得到 {:?}", none, none.unwrap());
 }
-

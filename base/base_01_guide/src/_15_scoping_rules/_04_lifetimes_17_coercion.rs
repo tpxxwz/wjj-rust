@@ -14,7 +14,7 @@ fn choose_first<'a: 'b, 'b>(first: &'a i32, _: &'b i32) -> &'b i32 {
     first
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let first = 2; // 较长的生命周期
 
@@ -25,4 +25,3 @@ fn main() {
         println!("{} 是第一个", choose_first(&first, &second));
     };
 }
-

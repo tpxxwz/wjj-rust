@@ -24,7 +24,7 @@ fn print(result: Result<i32, ParseIntError>) {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main1() {
     print(multiply1("10", "2"));
     print(multiply1("t", "2"));
@@ -47,7 +47,7 @@ fn multiply2(first_number_str: &str, second_number_str: &str) -> Result<i32, Par
     Ok(first_number * second_number)
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main2() {
     print(multiply2("10", "2"));
     print(multiply2("t", "2"));

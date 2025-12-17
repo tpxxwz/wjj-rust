@@ -26,18 +26,18 @@ fn inspect(event: WebEvent) {
         // 将 `Click` 解构为 `x` 和 `y`。
         WebEvent::Click { x, y } => {
             println!("点击坐标：x={}, y={}。", x, y);
-        },
+        }
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main1() {
     let pressed = WebEvent::KeyPress('x');
     // `to_owned()` 从字符串切片创建一个拥有所有权的 `String`。
-    let pasted  = WebEvent::Paste("我的文本".to_owned());
-    let click   = WebEvent::Click { x: 20, y: 80 };
-    let load    = WebEvent::PageLoad;
-    let unload  = WebEvent::PageUnload;
+    let pasted = WebEvent::Paste("我的文本".to_owned());
+    let click = WebEvent::Click { x: 20, y: 80 };
+    let load = WebEvent::PageLoad;
+    let unload = WebEvent::PageUnload;
 
     inspect(pressed);
     inspect(pasted);
@@ -57,7 +57,7 @@ enum VeryVerboseEnumOfThingsToDoWithNumbers {
 // 创建类型别名
 type Operations = VeryVerboseEnumOfThingsToDoWithNumbers;
 
-#[wjj_lib::gen_test]
+#[test]
 fn main2() {
     // 我们可以通过别名引用每个变体，而不是使用又长又不便的名称。
     let x = Operations::Add;
@@ -73,4 +73,3 @@ impl VeryVerboseEnumOfThingsToDoWithNumbers {
         }
     }
 }
-

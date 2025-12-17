@@ -16,11 +16,15 @@ fn annotated_input<'a>(x: &'a i32) {
 
 // 同样，`elided_pass` 和 `annotated_pass` 具有相同的签名
 // 因为生命周期被隐式地添加到 `elided_pass`：
-fn elided_pass(x: &i32) -> &i32 { x }
+fn elided_pass(x: &i32) -> &i32 {
+    x
+}
 
-fn annotated_pass<'a>(x: &'a i32) -> &'a i32 { x }
+fn annotated_pass<'a>(x: &'a i32) -> &'a i32 {
+    x
+}
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let x = 3;
 
@@ -30,4 +34,3 @@ fn main() {
     println!("`elided_pass`: {}", elided_pass(&x));
     println!("`annotated_pass`: {}", annotated_pass(&x));
 }
-

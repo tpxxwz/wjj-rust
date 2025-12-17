@@ -1,7 +1,7 @@
 // 结构体
 // 同样，struct 可以按如下方式解构：
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     struct Foo {
         x: (u32, u32),
@@ -44,5 +44,3 @@ fn main() {
     } = bar;
     println!("嵌套：nested_x = {nested_x:?}，nested_y = {nested_y:?}");
 }
-
-

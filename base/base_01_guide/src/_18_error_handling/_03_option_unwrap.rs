@@ -19,8 +19,8 @@ fn give_adult(drink: Option<&str>) {
     // 为每种情况指定一个处理方案。
     match drink {
         Some("柠檬水") => println!("呸！太甜了。"),
-        Some(inner)   => println!("{}？真不错。", inner),
-        None          => println!("没有饮料？好吧。"),
+        Some(inner) => println!("{}？真不错。", inner),
+        None => println!("没有饮料？好吧。"),
     }
 }
 
@@ -29,16 +29,18 @@ fn give_adult(drink: Option<&str>) {
 fn drink(drink: Option<&str>) {
     // 当 `unwrap` 收到 `None` 时会触发 `panic`。
     let inside = drink.unwrap();
-    if inside == "柠檬水" { panic!("啊啊啊啊啊！！！！"); }
+    if inside == "柠檬水" {
+        panic!("啊啊啊啊啊！！！！");
+    }
 
     println!("我超爱{}！！！！！", inside);
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
-    let water  = Some("水");
+    let water = Some("水");
     let lemonade = Some("柠檬水");
-    let void  = None;
+    let void = None;
 
     give_adult(water);
     give_adult(lemonade);
@@ -50,4 +52,3 @@ fn main() {
     drink(coffee);
     drink(nothing);
 }
-

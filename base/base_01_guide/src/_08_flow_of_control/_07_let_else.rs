@@ -31,9 +31,7 @@ fn get_count_item(s: &str) -> (u64, &str) {
     (count, item)
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     assert_eq!(get_count_item("3 chairs"), (3, "chairs"));
 }
-
-

@@ -17,17 +17,17 @@ mod my {
     impl<T> ClosedBox<T> {
         // 一个公有的构造方法
         pub fn new(contents: T) -> ClosedBox<T> {
-            ClosedBox {
-                contents: contents,
-            }
+            ClosedBox { contents: contents }
         }
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 具有公有字段的公有结构体可以正常构造
-    let open_box = my::OpenBox { contents: "公开信息" };
+    let open_box = my::OpenBox {
+        contents: "公开信息",
+    };
 
     // 且可以正常访问其字段。
     println!("打开的盒子包含：{}", open_box.contents);
@@ -45,4 +45,3 @@ fn main() {
     //println!("封闭的盒子包含：{}", _closed_box.contents);
     // TODO ^ 尝试取消此行注释
 }
-

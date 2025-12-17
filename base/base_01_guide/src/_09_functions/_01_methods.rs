@@ -76,7 +76,7 @@ impl Pair {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let rectangle = Rectangle {
         // 使用双冒号调用关联函数
@@ -110,4 +110,3 @@ fn main() {
     //pair.destroy();
     // TODO ^ 尝试取消注释这一行
 }
-

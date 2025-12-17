@@ -16,7 +16,7 @@ fn drink1(beverage: &str) {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main1() {
     drink1("水");
     drink1("柠檬水");
@@ -42,9 +42,8 @@ fn drink2(beverage: &str) {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main2() {
     drink2("水");
     drink2("柠檬水");
 }
-

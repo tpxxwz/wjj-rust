@@ -14,7 +14,7 @@
 
 use std::path::Path;
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 从 `&'static str` 创建一个 `Path`
     let path = Path::new(".");
@@ -40,4 +40,3 @@ fn main() {
     }
 }
 // 请务必查看其他 Path 方法（posix::Path 或 windows::Path）以及 Metadata 结构体。
-

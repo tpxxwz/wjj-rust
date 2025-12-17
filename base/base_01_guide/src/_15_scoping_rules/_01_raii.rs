@@ -12,7 +12,7 @@ fn create_box() {
     // `_box1` 在此处被销毁，内存被释放
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main1() {
     // 在堆上分配一个整数
     let _box2 = Box::new(5i32);
@@ -52,7 +52,6 @@ fn main1() {
 // ==26873== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 2 from 2)
 // 这里没有内存泄漏！
 
-
 // 析构函数
 // Rust 中的析构函数概念是通过 Drop trait 提供的。
 // 当资源离开作用域时，析构函数会被调用。
@@ -69,10 +68,8 @@ impl Drop for ToDrop {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main2() {
     let x = ToDrop;
     println!("创建了一个 ToDrop！");
 }
-
-

@@ -17,9 +17,11 @@ resolver = "3"
 members = [
     "wjj_lib",
     "base/base_01_guide",
-    "base/base_01_guide",
     "base/base_02_extend",
-    "vendor/async/tokio/tokio_01_hello_world"
+    "vendor/vendor_async",
+    "vendor/vendor_error",
+    "vendor/vendor_orm",
+    "vendor/vendor_serialization",
 ]
 
 [workspace.package]

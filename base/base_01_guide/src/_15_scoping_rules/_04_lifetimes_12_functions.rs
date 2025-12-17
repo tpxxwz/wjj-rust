@@ -25,14 +25,16 @@ fn print_multi<'a, 'b>(x: &'a i32, y: &'b i32) {
 
 // 返回已传入的引用是可以接受的。
 // 但是，必须返回正确的生命周期。
-fn pass_x<'a, 'b>(x: &'a i32, _: &'b i32) -> &'a i32 { x }
+fn pass_x<'a, 'b>(x: &'a i32, _: &'b i32) -> &'a i32 {
+    x
+}
 
 //fn invalid_output<'a>() -> &'a String { &String::from("foo") }
 // 上面的代码是无效的：`'a` 必须比函数存活更长。
 // 这里的 `&String::from("foo")` 会创建一个 `String`，然后创建一个引用。
 // 接着，在退出作用域时数据被丢弃，导致返回一个指向无效数据的引用。
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let x = 7;
     let y = 9;
@@ -47,5 +49,3 @@ fn main() {
     add_one(&mut t);
     print_one(&t);
 }
-
-

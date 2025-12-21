@@ -1,0 +1,8 @@
+[package]
+name = "vendor_template"
+version = "0.0.1"
+edition = "2024"
+
+[dependencies]
+serde_json.workspace = true
+handlebars = "6.3.2"

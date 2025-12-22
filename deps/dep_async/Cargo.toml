@@ -1,5 +1,5 @@
 [package]
-name = "vendor_async"
+name = "dep_async"
 version = "0.0.1"
 edition = "2024"
 

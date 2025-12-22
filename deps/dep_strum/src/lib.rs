@@ -1,0 +1,160 @@
+// === Derive 宏（来自 strum_macros）===
+use strum::{
+    Display,
+    EnumCount,
+    EnumIs,
+    EnumIter,
+    EnumMessage, // derive 宏
+    EnumProperty,
+    EnumString,
+    VariantNames,
+};
+
+// === Trait（来自 strum）===
+// use strum::EnumMessage as EnumMessageTrait;
+use strum::IntoEnumIterator; // trait // trait（避免混淆）
+
+//
+// 1. 字符串 <-> 枚举 EnumString
+// 2. 枚举 <-> 字符串 Display
+//
+#[derive(EnumString, Display, Debug)]
+enum Mode {
+    Fast,
+    Slow,
+    #[strum(serialize = "Turbo1")] // 自定义字符串
+    Turbo,
+}
+
+#[test]
+fn str_enum() {
+    println!("=== 1. 字符串 <-> 枚举 ===");
+    let m1: Mode = "Fast".parse().unwrap();
+    let m2: Mode = "Turbo1".parse().unwrap();
+    println!("Parsed: {:?}, {:?}", m1, m2);
+    println!("Display: {}", Mode::Slow);
+}
+
+//
+// 2. 遍历枚举  自动为枚举实现了IntoEnumIterator
+//
+#[derive(EnumIter, Debug)]
+enum Color {
+    Red,
+    Blue,
+    Green,
+}
+
+#[test]
+fn enum_iter() {
+    println!("\n=== 2. 遍历枚举 ===");
+    for c in Color::iter() {
+        println!("Color variant: {:?}", c);
+    }
+}
+
+//
+// 3. 自动生成 is_xxx()
+//
+#[derive(EnumIs, Debug)]
+enum State {
+    Init,
+    Running,
+    Stopped,
+}
+
+#[test]
+fn enum_is_xxx() {
+    println!("\n=== 3. 自动生成 is_xxx() ===");
+    let s = State::Running;
+    if s.is_running() {
+        println!("State is running");
+    }
+}
+
+//
+// 4. 获取所有 variant 名称
+//
+#[derive(VariantNames)]
+enum Level {
+    Low,
+    Medium,
+    High,
+}
+
+#[test]
+fn enum_variant() {
+    println!("\n=== 4. 获取所有 variant 名称 ===");
+    println!("Level variants: {:?}", Level::VARIANTS);
+}
+
+//
+// 5. 给枚举加属性 多字段属性表
+//
+#[derive(EnumIs, EnumProperty, Debug)]
+enum HttpCode {
+    #[strum(props(code = "200", message = "OK"))]
+    Ok,
+
+    #[strum(props(code = "404", message = "Not Found"))]
+    NotFound,
+
+    #[strum(props(code = "500", message = "Internal Error"))]
+    InternalError,
+}
+
+#[test]
+fn enum_property() {
+    println!("\n=== 5. 枚举属性 ===");
+    let code = HttpCode::NotFound;
+    println!(
+        "HttpCode {:?}: code={}, message={}",
+        code,
+        code.get_str("code").unwrap(),
+        code.get_str("message").unwrap(),
+    );
+}
+
+//
+// 6. EnumMessage —— 给枚举加 message // 单字段文案
+//
+#[derive(EnumMessage, Debug)]
+enum HttpStatus {
+    #[strum(message = "Everything is OK")]
+    Ok,
+
+    #[strum(message = "Resource not found")]
+    NotFound,
+
+    #[strum(message = "Internal server error")]
+    InternalError,
+}
+
+#[test]
+fn enum_message_demo() {
+    println!("=== EnumMessage Demo ===");
+
+    let s = HttpStatus::NotFound;
+
+    // get_message() 返回 Option<&'static str>
+    println!("Status {:?} => message: {}", s, s.get_message().unwrap());
+}
+
+//
+// 7. EnumCount —— 自动生成 COUNT 常量
+//
+#[derive(EnumCount, Debug)]
+enum Priority {
+    Low,
+    Normal,
+    High,
+    Critical,
+}
+
+#[test]
+fn enum_count_demo() {
+    println!("\n=== EnumCount Demo ===");
+
+    // 自动生成 Priority::COUNT 常量
+    println!("Priority count = {}", Priority::COUNT);
+}

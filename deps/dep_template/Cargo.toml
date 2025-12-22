@@ -1,5 +1,5 @@
 [package]
-name = "vendor_template"
+name = "dep_template"
 version = "0.0.1"
 edition = "2024"
 

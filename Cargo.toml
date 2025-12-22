@@ -18,11 +18,13 @@ members = [
     "wjj_lib",
     "base/base_01_guide",
     "base/base_02_extend",
-    "vendor/vendor_async",
-    "vendor/vendor_error",
-    "vendor/vendor_orm",
-    "vendor/vendor_serialization",
-    "vendor/vendor_template",
+    "deps/dep_async",
+    "deps/dep_error",
+    "deps/dep_orm",
+    "deps/dep_rising_wave",
+    "deps/dep_serialization",
+    "deps/dep_strum",
+    "deps/dep_template",
 ]
 
 [workspace.package]

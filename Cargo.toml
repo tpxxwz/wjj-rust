@@ -20,6 +20,7 @@ members = [
     "base/base_02_extend",
     "deps/dep_async",
     "deps/dep_error",
+    "deps/dep_log",
     "deps/dep_orm",
     "deps/dep_rising_wave",
     "deps/dep_serialization",

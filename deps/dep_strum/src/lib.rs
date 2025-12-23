@@ -1,3 +1,5 @@
+#![allow(unused, dead_code, unreachable_code, path_statements, unexpected_cfgs)]
+
 // === Derive 宏（来自 strum_macros）===
 use strum::{
     Display,
@@ -18,6 +20,7 @@ use strum::IntoEnumIterator; // trait // trait（避免混淆）
 // 1. 字符串 <-> 枚举 EnumString
 // 2. 枚举 <-> 字符串 Display
 //
+// #[derive(Display, Debug)]
 #[derive(EnumString, Display, Debug)]
 enum Mode {
     Fast,
@@ -25,6 +28,19 @@ enum Mode {
     #[strum(serialize = "Turbo1")] // 自定义字符串
     Turbo,
 }
+
+// impl std::str::FromStr for Mode {
+//     type Err = strum::ParseError;
+//
+//     fn from_str(s: &str) -> Result<Self, Self::Err> {
+//         match s {
+//             "Fast" => Ok(Mode::Fast),
+//             "Slow" => Ok(Mode::Slow),
+//             "Turbo1" => Ok(Mode::Turbo), // 来自 #[strum(serialize = "Turbo1")]
+//             _ => Err(strum::ParseError::VariantNotFound),
+//         }
+//     }
+// }
 
 #[test]
 fn str_enum() {
@@ -93,27 +109,66 @@ fn enum_variant() {
 //
 #[derive(EnumIs, EnumProperty, Debug)]
 enum HttpCode {
-    #[strum(props(code = "200", message = "OK"))]
+    #[strum(props(code = 200, message = "OK"))]
     Ok,
 
-    #[strum(props(code = "404", message = "Not Found"))]
+    #[strum(props(code = 404, message = "Not Found"))]
     NotFound,
 
-    #[strum(props(code = "500", message = "Internal Error"))]
+    #[strum(props(code = 500, message = "Internal Error"))]
     InternalError,
 }
 
-#[test]
-fn enum_property() {
-    println!("\n=== 5. 枚举属性 ===");
-    let code = HttpCode::NotFound;
-    println!(
-        "HttpCode {:?}: code={}, message={}",
-        code,
-        code.get_str("code").unwrap(),
-        code.get_str("message").unwrap(),
-    );
-}
+// impl EnumProperty for HttpCode {
+//     fn get_str(&self, prop: &str) -> Option<&'static str> {
+//         match self {
+//             HttpCode::Ok => match prop {
+//                 "message" => Some("OK"),
+//                 _ => None,
+//             },
+//             HttpCode::NotFound => match prop {
+//                 "message" => Some("Not Found"),
+//                 _ => None,
+//             },
+//             HttpCode::InternalError => match prop {
+//                 "message" => Some("Internal Error"),
+//                 _ => None,
+//             },
+//         }
+//     }
+//
+//     fn get_int(&self, prop: &str) -> Option<i64> {
+//         match self {
+//             HttpCode::Ok => match prop {
+//                 "code" => Some(200),
+//                 _ => None,
+//             },
+//             HttpCode::NotFound => match prop {
+//                 "code" => Some(404),
+//                 _ => None,
+//             },
+//             HttpCode::InternalError => match prop {
+//                 "code" => Some(500),
+//                 _ => None,
+//             },
+//         }
+//     }
+//     fn get_bool(&self, prop: &str) -> Option<bool> {
+//         None
+//     }
+// }
+//
+// #[test]
+// fn enum_property() {
+//     println!("\n=== 5. 枚举属性 ===");
+//     let code = HttpCode::NotFound;
+//     println!(
+//         "HttpCode {:?}: code={}, message={}",
+//         code,
+//         code.get_int("code").unwrap(),
+//         code.get_str("message").unwrap(),
+//     );
+// }
 
 //
 // 6. EnumMessage —— 给枚举加 message // 单字段文案

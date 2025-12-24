@@ -1,41 +1,94 @@
-use anyhow::{Error, Result};
+use minijinja::Environment;
+use once_cell::sync::Lazy;
+use std::error::Error;
 use std::fmt;
-use std::fmt::Arguments;
+use std::fmt::Debug;
+use std::sync::RwLock;
 
-pub trait Exception {
-    fn error_code(&self) -> &'static str;
+pub trait Exc {
+    fn err_code(&self) -> &'static str;
 }
 
-pub trait RawException: Exception {
-    fn error_msg(&self) -> &'static str;
+pub trait RawExc: Exc {
+    fn err_msg(&self) -> &'static str;
 }
 
-pub trait FmtException: Exception {
-    fn error_fmt_temp(&self) -> &'static str;
-}
-
+#[derive(Debug)]
 struct RawErr {
-    error_code: &'static str,
-    error_msg: &'static str,
+    err_code: &'static str,
+    err_msg: &'static str,
 }
 
-struct FmtErr<'a> {
-    error_code: &'static str,
-    error_fmt_temp: &'static str,
-    error_args: &'a [&'a dyn fmt::Display],
+impl RawErr {
+    pub fn from_exc<E>(exc: &E) -> Self
+    where
+        E: RawExc,
+    {
+        RawErr {
+            err_code: exc.err_code(),
+            err_msg: exc.err_msg(),
+        }
+    }
+}
+
+pub trait FmtExc {
+    fn err_code(&self) -> &'static str;
+    fn err_tpl_name(&self) -> &'static str;
 }
 
 impl fmt::Display for RawErr {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "Error {}: {}", self.error_code, self.error_msg)
+        write!(f, "Error {}: {}", self.err_code, self.err_msg)
     }
 }
-//
-// impl fmt::Display for FmtErr {
-//     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-//         write!(f, "Error {}: {}", self.error_code, self.error_msg)
-//     }
-// }
+
+pub static ENV: Lazy<RwLock<Environment<'static>>> = Lazy::new(|| {
+    let env = Environment::new();
+    RwLock::new(env)
+});
+
+pub fn render_template(name: &str, args: &serde_json::Value) -> Result<String, minijinja::Error> {
+    let env = ENV.read().unwrap();
+    let tpl = env.get_template(name).unwrap();
+    tpl.render(args)
+}
+
+#[derive(Debug)]
+pub struct FmtErr {
+    pub err_code: &'static str,
+    pub err_tpl_name: &'static str,
+    pub err_args: serde_json::Value,
+}
+
+impl FmtErr {
+    pub fn from_exc<E>(exc: &E, err_args: serde_json::Value) -> Self
+    where
+        E: FmtExc,
+    {
+        FmtErr {
+            err_code: exc.err_code(),
+            err_tpl_name: exc.err_tpl_name(),
+            err_args,
+        }
+    }
+}
+
+impl fmt::Display for FmtErr {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match render_template(self.err_tpl_name, &self.err_args) {
+            Ok(s) => f.write_str(&s),
+            Err(e) => {
+                // 你可以 log，也可以忽略
+                eprintln!("template render failed: {e}");
+                Err(fmt::Error)
+            }
+        }
+    }
+}
+
+impl Error for RawErr {}
+impl Error for FmtErr {}
+
 //
 //
 // // 自定义错误类型

@@ -5,3 +5,5 @@ mod _02_pin;
 mod _03_blanket_impl_child_trait;
 mod _04_array_vec;
 mod _05_my_from_into;
+mod _06_as_ref;
+mod _07_borrow;

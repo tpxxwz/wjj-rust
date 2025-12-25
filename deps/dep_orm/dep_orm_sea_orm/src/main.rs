@@ -1,6 +1,5 @@
 // cargo install sea-orm-cli
 // sea-orm-cli migrate init
-// sea-orm-cli migrate generate create_customers_table
 // 在生成的migration项目的cargo.toml 文件加上空的[workspace] 在futures里面加上 "runtime-tokio-native-tls", "sqlx-postgres"
 // sea-orm-cli migrate up  // 运行迁移
 // sea-orm-cli migrate down  // 或回滚
@@ -121,8 +120,8 @@ struct CustomerSummary {
     email: String,
 }
 
-#[tokio::test]
-async fn test() -> Result<(), DbErr> {
+#[tokio::main]
+async fn main() -> Result<(), DbErr> {
     let db = Database::connect("postgres://postgres:wzzst310@wjjzst.com/postgres").await?;
 
     // ✅ 插入 Customer

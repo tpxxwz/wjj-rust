@@ -162,6 +162,7 @@ async fn test_query_as_macro() -> Result<(), sqlx::Error> {
     // 验证结果
     assert_eq!(user.name, "Alice");
     assert_eq!(user.age, 30);
+    assert_ne!(user.id, 0);
 
     Ok(())
 }
@@ -214,3 +215,5 @@ async fn test_transaction_multiple_sql() -> Result<(), sqlx::Error> {
 
     Ok(())
 }
+
+fn main() {}

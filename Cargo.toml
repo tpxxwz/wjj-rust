@@ -23,6 +23,7 @@ members = [
     "deps/dep_log",
     "deps/dep_orm/dep_orm_rbatis",
     "deps/dep_orm/dep_orm_sea_orm",
+    "deps/dep_orm/dep_orm_sea_orm/db/migration",
     "deps/dep_orm/dep_orm_sqlx",
     "deps/dep_rising_wave",
     "deps/dep_serialization",

@@ -1,9 +1,19 @@
 // cargo install sea-orm-cli
 // sea-orm-cli migrate init
+// sea-orm-cli migrate init --migration-dir ./db/migration
 // 在生成的migration项目的cargo.toml 文件加上空的[workspace] 在futures里面加上 "runtime-tokio-native-tls", "sqlx-postgres"
-// sea-orm-cli migrate up  // 运行迁移
-// sea-orm-cli migrate down  // 或回滚
+// sea-orm-cli migrate up -d ./db/migration // 运行迁移
+// sea-orm-cli migrate down -d ./db/migration // 或回滚
+// sea-orm-cli migrate generate -d ./db/migration ool_10026
 
+// 已有的库生成rust对象
+// sea-orm-cli generate entity -u postgres://postgres:wzzst310@localhost:5432/sea_orm -o entity
+
+// 当然提前定义好 entity的mod
+mod entity;
+
+use std::env;
+use dotenvy::dotenv;
 use sea_orm::entity::prelude::*;
 use sea_orm::{
     ActiveModelTrait, ColumnTrait, Database, DbBackend, DbErr, EntityTrait, FromQueryResult,
@@ -122,7 +132,11 @@ struct CustomerSummary {
 
 #[tokio::main]
 async fn main() -> Result<(), DbErr> {
-    let db = Database::connect("postgres://postgres:wzzst310@wjjzst.com/postgres").await?;
+    dotenv().ok();
+    // from_filename(".env_prod").ok();
+    let database_url = env::var("DATABASE_URL")
+        .unwrap_or("postgres://postgres:wzzst310@localhost:5432/sea_orm".to_string());
+    let db = Database::connect(database_url).await?;
 
     // ✅ 插入 Customer
     let new_customer = customers::ActiveModel {
@@ -194,7 +208,6 @@ async fn main() -> Result<(), DbErr> {
         ..Default::default()
     };
     order_txn.insert(&txn).await?;
-
     println!("Rolling back transaction...");
     txn.rollback().await?;
     println!("Transaction rolled back!");

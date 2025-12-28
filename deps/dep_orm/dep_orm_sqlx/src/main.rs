@@ -27,7 +27,7 @@ async fn get_pool() -> PgPool {
     dotenv().ok();
     // from_filename(".env_prod").ok();
     let database_url = env::var("DATABASE_URL")
-        .unwrap_or("postgres://root:wzzst310@localhost:5432/root".to_string());
+        .unwrap_or("postgres://postgres:wzzst310@localhost:5432/postgres".to_string());
     PgPoolOptions::new()
         .max_connections(5)
         .connect(database_url.as_str())

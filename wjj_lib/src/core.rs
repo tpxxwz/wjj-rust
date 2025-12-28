@@ -1,9 +1,10 @@
-use minijinja::Environment;
+use minijinja::{Environment, Template};
 use once_cell::sync::Lazy;
 use std::error::Error;
-use std::fmt;
+use std::{fmt, fs};
 use std::fmt::Debug;
-use std::sync::RwLock;
+use std::sync::Arc;
+use serde_json::json;
 
 pub trait Exc {
     fn err_code(&self) -> &'static str;
@@ -31,106 +32,95 @@ impl RawErr {
     }
 }
 
-pub trait FmtExc {
-    fn err_code(&self) -> &'static str;
-    fn err_tpl_name(&self) -> &'static str;
-}
-
 impl fmt::Display for RawErr {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, "Error {}: {}", self.err_code, self.err_msg)
     }
 }
 
-pub static ENV: Lazy<RwLock<Environment<'static>>> = Lazy::new(|| {
-    let env = Environment::new();
-    RwLock::new(env)
-});
-
-pub fn render_template(name: &str, args: &serde_json::Value) -> Result<String, minijinja::Error> {
-    let env = ENV.read().unwrap();
-    let tpl = env.get_template(name).unwrap();
-    tpl.render(args)
+pub trait FmtExc {
+    fn err_code(&self) -> &'static str;
+    fn err_tpl(&self) -> &'static str;
 }
 
+pub static ENV: Lazy<Arc<Environment<'static>>> = Lazy::new(|| Arc::new(Environment::new()));
+
 #[derive(Debug)]
-pub struct FmtErr {
+pub struct FmtErr<'env: 'source, 'source> {
     pub err_code: &'static str,
-    pub err_tpl_name: &'static str,
+    pub err_tpl: &'static str,
+    pub template: Template<'env, 'source>,
     pub err_args: serde_json::Value,
 }
 
-impl FmtErr {
+impl FmtErr<'static, 'static> {
     pub fn from_exc<E>(exc: &E, err_args: serde_json::Value) -> Self
     where
         E: FmtExc,
     {
         FmtErr {
             err_code: exc.err_code(),
-            err_tpl_name: exc.err_tpl_name(),
+            err_tpl: exc.err_tpl(),
+            template: ENV.template_from_str(exc.err_tpl()).unwrap(),
             err_args,
         }
     }
 }
 
-impl fmt::Display for FmtErr {
+impl fmt::Display for FmtErr<'static, 'static> {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        match render_template(self.err_tpl_name, &self.err_args) {
-            Ok(s) => f.write_str(&s),
-            Err(e) => {
-                // 你可以 log，也可以忽略
-                eprintln!("template render failed: {e}");
-                Err(fmt::Error)
-            }
-        }
+        let output = self
+            .template
+            .render(self.err_args.clone())
+            .unwrap_or_else(|_| format!("[模板渲染失败: {}]", self.err_code));
+        write!(f, "{}", output)
     }
 }
 
 impl Error for RawErr {}
-impl Error for FmtErr {}
+impl Error for FmtErr<'static, 'static> {}
 
-//
-//
-// // 自定义错误类型
-// #[derive(Debug)]
-// struct MyCustomError {
-//     code: &'static str,
-//     message: &'static str,
-// }
-//
-// // 实现 Display
-// impl fmt::Display for MyCustomError {
-//     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-//         write!(f, "Error {}: {}", self.code, self.message)
-//     }
-// }
 
-// impl MyCustomError {
-//     // 从 RawError 构造
-//     fn from_raw<E: RawError>(err: E) -> Self {
-//         MyCustomError {
-//             code: err.error_code(),
-//             message: err.error_msg().to_string(),
-//         }
-//     }
-//
-//     // 从 FmtError + Arguments 构造
-//     // fn from_fmt<E: FmtError>(err: E, args: Arguments) -> Self {
-//     //
-//     //     MyCustomError {
-//     //         code: err.error_code(),
-//     //         message: format!(err.error_fmt_msg(), args),
-//     //     }
-//     // }
-// }
-//
-// // 实现 std::error::Error
-// impl std::error::Error for MyCustomError {}
-//
-// // 模拟一个返回 anyhow::Error 的函数
-// fn do_something() -> Result<()> {
-//     Err(Error::new(MyCustomError {
-//         code: "404",
-//         message: "Resource not found".to_string(),
-//     }))
-// }
+
+
+// 错误元信息结构
+pub struct ErrorMeta {
+    pub code: &'static str,
+    pub template: &'static str,
+}
+
+// 枚举定义错误类型
+#[derive(Debug)]
+pub enum AppError {
+    IoError,
+    DbError,
+    NotFound,
+}
+
+// 每个错误对应的元信息
+pub const IO_ERROR_META: ErrorMeta = ErrorMeta {
+    code: "E2001",
+    template: "IO错误: 文件 {{ filename }} 读取失败",
+};
+
+pub const DB_ERROR_META: ErrorMeta = ErrorMeta {
+    code: "E3001",
+    template: "数据库错误: 查询 {{ query }} 执行失败",
+};
+
+pub const NOT_FOUND_META: ErrorMeta = ErrorMeta {
+    code: "E404",
+    template: "资源 {{ resource }} 未找到",
+};
+
+// 枚举方法返回对应的元信息
+impl AppError {
+    pub fn meta(&self) -> &'static ErrorMeta {
+        match self {
+            AppError::IoError => &IO_ERROR_META,
+            AppError::DbError => &DB_ERROR_META,
+            AppError::NotFound => &NOT_FOUND_META,
+        }
+    }
+}
+

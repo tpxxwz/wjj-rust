@@ -343,7 +343,6 @@ version = "0.0.1"
 dependencies = [
  "pretty_assertions",
  "rand 0.10.0-rc.5",
- "wjj_lib",
 ]
 
 [[package]]
@@ -351,7 +350,6 @@ name = "base_02_extend"
 version = "0.0.1"
 dependencies = [
  "futures",
- "wjj_lib",
 ]
 
 [[package]]
@@ -628,6 +626,37 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b05b61dc5112cbb17e4b6cd61790d9845d13888356391624cbe7e41efeac1e75"
 
 [[package]]
+name = "common_core"
+version = "0.0.1"
+dependencies = [
+ "inventory",
+ "minijinja",
+ "once_cell",
+]
+
+[[package]]
+name = "common_lib"
+version = "0.0.1"
+
+[[package]]
+name = "common_macros"
+version = "0.0.1"
+dependencies = [
+ "common_core",
+ "proc-macro2",
+ "quote",
+ "syn 2.0.111",
+]
+
+[[package]]
+name = "common_macros_internals"
+version = "0.0.1"
+
+[[package]]
+name = "common_test"
+version = "0.0.1"
+
+[[package]]
 name = "concurrent-queue"
 version = "2.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -839,6 +868,8 @@ dependencies = [
 name = "dep_template"
 version = "0.0.1"
 dependencies = [
+ "common_core",
+ "common_macros",
  "handlebars",
  "minijinja",
  "serde_json",
@@ -1630,6 +1661,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "inventory"
+version = "0.3.21"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "bc61209c082fbeb19919bee74b176221b27223e27b65d781eb91af24eb1fb46e"
+dependencies = [
+ "rustversion",
+]
+
+[[package]]
 name = "is_terminal_polyfill"
 version = "1.70.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2370,9 +2410,9 @@ dependencies = [
 
 [[package]]
 name = "proc-macro2"
-version = "1.0.103"
+version = "1.0.104"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5ee95bc4ef87b8d5ba32e8b7714ccc834865276eab0aed5c9958d00ec45f49e8"
+checksum = "9695f8df41bb4f3d222c95a67532365f569318332d03d5f3f67f37b20e6ebdf0"
 dependencies = [
  "unicode-ident",
 ]
@@ -4449,17 +4489,6 @@ name = "wit-bindgen"
 version = "0.46.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f17a85883d4e6d00e8a97c586de764dabcc06133f7f1d55dce5cdc070ad7fe59"
-
-[[package]]
-name = "wjj_lib"
-version = "0.0.1"
-dependencies = [
- "minijinja",
- "once_cell",
- "quote",
- "serde_json",
- "syn 2.0.111",
-]
 
 [[package]]
 name = "writeable"

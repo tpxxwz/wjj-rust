@@ -1,0 +1,13 @@
+[package]
+name = "common_core"
+version = "0.0.1"
+edition = "2024"
+
+[lib]
+crate-type = ["rlib", "dylib"]  # inventory 需要 dylib
+
+[dependencies]
+inventory = "0.3.21"
+minijinja = "2.14.0"
+once_cell = "1.21.3"
+

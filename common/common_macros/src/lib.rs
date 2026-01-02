@@ -24,7 +24,7 @@ pub fn register_template(input: TokenStream) -> TokenStream {
 
     let expanded = quote! {
         inventory::submit! {
-            my_template_core::TemplateRegistration {
+            common_core::TemplateRegistration {
                 f: |env| {
                     env.add_template(#name, #content).unwrap();
                 }

@@ -871,6 +871,7 @@ dependencies = [
  "common_core",
  "common_macros",
  "handlebars",
+ "inventory",
  "minijinja",
  "serde_json",
  "tera",

@@ -8,7 +8,6 @@
 // cfg! 与 #[cfg] 不同，它不会移除任何代码，只会求值为 true 或 false。
 // 例如，当 cfg! 用于条件时，if/else 表达式中的所有代码块都需要是有效的，无论 cfg! 正在评估什么。
 
-
 // 这个函数只有在目标操作系统是 linux 时才会被编译
 #[cfg(target_os = "linux")]
 fn are_you_on_linux() {
@@ -21,7 +20,7 @@ fn are_you_on_linux() {
     println!("你**不是**在运行 Linux！");
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     are_you_on_linux();
 
@@ -32,4 +31,3 @@ fn main() {
         println!("是的，这绝对**不是** Linux！");
     }
 }
-

@@ -12,7 +12,7 @@
 //
 // Rust 中可用的运算符及其优先级与其他 类 C 语言 类似。
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 整数加法
     println!("1 + 2 = {}", 1u32 + 2);
@@ -39,4 +39,3 @@ fn main() {
     // 使用下划线来提高可读性！
     println!("One million is written as {}", 1_000_000u32);
 }
-

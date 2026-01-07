@@ -60,9 +60,8 @@ fn op(x: f64, y: f64) -> f64 {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 这会失败吗？
     println!("{}", op(1.0, 10.0));
 }
-

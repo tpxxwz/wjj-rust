@@ -13,7 +13,7 @@ fn borrow_i32(borrowed_i32: &i32) {
     println!("这个整数是：{}", borrowed_i32);
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 在堆上创建一个装箱的 i32，在栈上创建一个 i32
     // 注意：数字可以添加任意下划线以提高可读性
@@ -43,4 +43,3 @@ fn main() {
     // `boxed_i32` 现在可以将所有权交给 `eat_box_i32` 并被销毁
     eat_box_i32(boxed_i32);
 }
-

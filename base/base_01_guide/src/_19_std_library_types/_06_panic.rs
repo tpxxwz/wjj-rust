@@ -15,7 +15,7 @@ fn division(dividend: i32, divisor: i32) -> i32 {
 }
 
 // `main` 任务
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 堆分配的整数
     let _x = Box::new(0i32);
@@ -27,8 +27,6 @@ fn main() {
 
     // `_x` 应该在此处被销毁
 }
-
-
 
 // 让我们验证 panic! 不会导致内存泄漏。
 // $ rustc panic.rs && valgrind ./panic

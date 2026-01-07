@@ -84,7 +84,7 @@ fn function() {
     println!("调用了 `function()`");
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 模块允许消除同名项之间的歧义。
     function();
@@ -121,4 +121,3 @@ fn main() {
     //my_mod::private_nested::restricted_function();
     // TODO ^ 尝试取消此行注释
 }
-

@@ -10,7 +10,7 @@ fn some_number() -> Option<u32> {
     Some(42)
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     println!("告诉我你是什么类型的人");
 
@@ -46,5 +46,3 @@ fn main() {
         _ => (),
     }
 }
-
-

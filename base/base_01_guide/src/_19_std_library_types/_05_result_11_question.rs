@@ -49,21 +49,20 @@ mod checked {
 
     pub fn op(x: f64, y: f64) {
         match op_(x, y) {
-            Err(why) => panic!("{}", match why {
-                MathError::NonPositiveLogarithm
-                => "非正数的对数",
-                MathError::DivisionByZero
-                => "除以零",
-                MathError::NegativeSquareRoot
-                => "负数的平方根",
-            }),
+            Err(why) => panic!(
+                "{}",
+                match why {
+                    MathError::NonPositiveLogarithm => "非正数的对数",
+                    MathError::DivisionByZero => "除以零",
+                    MathError::NegativeSquareRoot => "负数的平方根",
+                }
+            ),
             Ok(value) => println!("{}", value),
         }
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     checked::op(1.0, 10.0);
 }
-

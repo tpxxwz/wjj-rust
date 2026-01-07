@@ -19,7 +19,7 @@ macro_rules! calculate {
     }};
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     calculate! { // 瞧瞧！这是可变参数的 `calculate!`！
         eval 1 + 2,
@@ -32,4 +32,3 @@ fn main() {
 // 1 + 2 = 3
 // 3 + 4 = 7
 // (2 * 3) + 1 = 7
-

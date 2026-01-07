@@ -28,7 +28,7 @@ fn create_fnonce() -> impl FnOnce() {
     move || println!("这是一个：{}", text)
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let fn_plain = create_fn();
     let mut fn_mut = create_fnmut();

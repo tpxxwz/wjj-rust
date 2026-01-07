@@ -20,7 +20,7 @@ enum Either<'a> {
     Ref(&'a i32),
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let x = 18;
     let y = 15;
@@ -28,11 +28,10 @@ fn main() {
     let single = Borrowed(&x);
     let double = NamedBorrowed { x: &x, y: &y };
     let reference = Either::Ref(&x);
-    let number    = Either::Num(y);
+    let number = Either::Num(y);
 
     println!("x 在 {:?} 中被借用", single);
     println!("x 和 y 在 {:?} 中被借用", double);
     println!("x 在 {:?} 中被借用", reference);
     println!("y 在 {:?} 中**没有**被借用", number);
 }
-

@@ -12,7 +12,7 @@ fn double_first(vec: Vec<&str>) -> i32 {
     2 * first.parse::<i32>().unwrap() // 生成错误 2
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let numbers = vec!["42", "93", "18"];
     let empty = vec![];
@@ -27,4 +27,3 @@ fn main() {
     // 错误 2：元素无法解析为数字
 }
 // 在接下来的章节中，我们将探讨几种处理此类问题的策略。
-

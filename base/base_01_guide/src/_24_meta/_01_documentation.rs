@@ -40,7 +40,7 @@ impl Person {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let john = Person::new("John");
 
@@ -83,4 +83,3 @@ pub use std::mem::drop;
 // pub use self::async_await::*;
 
 // 在文档生成方面，rustdoc 被社区广泛使用。它是用来生成 标准库文档 的工具。
-

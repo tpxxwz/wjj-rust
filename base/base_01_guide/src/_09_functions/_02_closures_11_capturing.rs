@@ -7,7 +7,7 @@
 // 通过可变引用：&mut T
 // 通过值：T
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 闭包优先通过引用捕获变量，仅在必要时才使用更底部的的捕获方式。
     use std::mem;
@@ -32,7 +32,6 @@ fn main() {
 
     // `print` 最后一次使用后，允许移动或重新借用
     let _color_moved = color;
-
 
     let mut count = 0;
     // 增加 `count` 的闭包可以接受 `&mut count` 或 `count`，
@@ -59,7 +58,6 @@ fn main() {
     // 可以在没有错误的情况下重新借用
     let _count_reborrowed = &mut count;
 
-
     // 不可复制类型。
     let movable = Box::new(3);
 
@@ -76,7 +74,6 @@ fn main() {
     // consume();
     // ^ TODO：尝试取消注释这行。
 
-
     // 在竖线前使用 move 强制闭包获取捕获变量的所有权：
     // `Vec` 是非复制语义。
     let haystack = vec![1, 2, 3];
@@ -90,9 +87,7 @@ fn main() {
     // ^ 取消上面这行的注释会导致编译时错误
     // 因为借用检查器不允许在变量被移动后重用。
 
-
     // 从闭包签名中移除 `move` 将导致闭包
     // 不可变借用 _haystack_ 变量，因此 _haystack_ 仍可用，
     // 取消注释上面的行不会导致错误。
 }
-

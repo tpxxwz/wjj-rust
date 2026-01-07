@@ -26,7 +26,7 @@ mod deeply {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 更方便地访问 `deeply::nested::function`
     other_function();
@@ -46,4 +46,3 @@ fn main() {
 
     function();
 }
-

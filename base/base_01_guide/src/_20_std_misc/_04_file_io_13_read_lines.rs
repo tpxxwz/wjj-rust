@@ -17,10 +17,10 @@ fn read_lines1(filename: &str) -> Vec<String> {
 
 fn read_lines2(filename: &str) -> Vec<String> {
     read_to_string(filename)
-        .unwrap()  // 遇到可能的文件读取错误时 panic
-        .lines()  // 将字符串分割成字符串切片的迭代器
-        .map(String::from)  // 将每个切片转换为字符串
-        .collect()  // 将它们收集到一个向量中
+        .unwrap() // 遇到可能的文件读取错误时 panic
+        .lines() // 将字符串分割成字符串切片的迭代器
+        .map(String::from) // 将每个切片转换为字符串
+        .collect() // 将它们收集到一个向量中
 }
 // 注意，在上述两个示例中，我们都必须将 lines() 返回的 &str 引用转换为拥有所有权的 String 类型，
 // 分别使用 .to_string() 和 String::from。
@@ -34,7 +34,7 @@ use std::fs::File;
 use std::io::{self, BufRead};
 use std::path::Path;
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 文件 hosts.txt 必须存在于当前路径下
     if let Ok(lines) = read_lines("./hosts.txt") {
@@ -48,12 +48,12 @@ fn main() {
 // 输出被包装在 Result 中以便于错误匹配。
 // 返回一个指向文件行读取器的迭代器。
 fn read_lines<P>(filename: P) -> io::Result<io::Lines<io::BufReader<File>>>
-where P: AsRef<Path>, {
+where
+    P: AsRef<Path>,
+{
     let file = File::open(filename)?;
     Ok(io::BufReader::new(file).lines())
 }
-
-
 
 // 运行此程序将逐行打印文件内容。
 //

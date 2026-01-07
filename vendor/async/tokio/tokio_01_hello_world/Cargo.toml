@@ -1,8 +1,0 @@
-[package]
-name = "tokio_01_hello_world"
-version = "0.0.1"
-edition = "2024"
-
-[dependencies]
-tokio.workspace = true
-mini-redis = "0.4.1"

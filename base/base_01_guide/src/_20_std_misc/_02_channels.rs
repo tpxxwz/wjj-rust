@@ -2,13 +2,13 @@
 // Rust 提供异步通道（channels）用于线程间通信。
 // 通道允许信息在两个端点之间单向流动：发送端（Sender）和接收端（Receiver）。
 
-use std::sync::mpsc::{Sender, Receiver};
 use std::sync::mpsc;
+use std::sync::mpsc::{Receiver, Sender};
 use std::thread;
 
 static NTHREADS: i32 = 3;
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 通道有两个端点：`Sender<T>` 和 `Receiver<T>`，
     // 其中 `T` 是要传输的消息类型
@@ -50,4 +50,3 @@ fn main() {
     // 显示消息发送的顺序
     println!("{:?}", ids);
 }
-

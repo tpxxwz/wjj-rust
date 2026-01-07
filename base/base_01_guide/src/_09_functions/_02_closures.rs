@@ -11,7 +11,7 @@
 // 单行表达式可省略函数体定界符（{}），其他情况则必须使用
 // 能够捕获外部环境的变量
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let outer_var = 42;
 
@@ -39,5 +39,3 @@ fn main() {
     let one = || 1;
     println!("返回 1 的闭包：{}", one());
 }
-
-

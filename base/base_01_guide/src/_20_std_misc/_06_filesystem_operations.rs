@@ -36,13 +36,13 @@ fn touch(path: &Path) -> io::Result<()> {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     println!("`mkdir a`");
     // 创建目录，返回 `io::Result<()>`
     match fs::create_dir("a") {
         Err(why) => println!("! {:?}", why.kind()),
-        Ok(_) => {},
+        Ok(_) => {}
     }
 
     println!("`echo hello > a/b.txt`");
@@ -64,12 +64,14 @@ fn main() {
 
     println!("`ln -s ../b.txt a/c/b.txt`");
     // 创建符号链接，返回 `io::Result<()>`
-    #[cfg(target_family = "unix")] {
+    #[cfg(target_family = "unix")]
+    {
         unix::fs::symlink("../b.txt", "a/c/b.txt").unwrap_or_else(|why| {
             println!("! {:?}", why.kind());
         });
     }
-    #[cfg(target_family = "windows")] {
+    #[cfg(target_family = "windows")]
+    {
         windows::fs::symlink_file("../b.txt", "a/c/b.txt").unwrap_or_else(|why| {
             println!("! {:?}", why.to_string());
         });
@@ -85,9 +87,11 @@ fn main() {
     // 读取目录内容，返回 `io::Result<Vec<Path>>`
     match fs::read_dir("a") {
         Err(why) => println!("! {:?}", why.kind()),
-        Ok(paths) => for path in paths {
-            println!("> {:?}", path.unwrap().path());
-        },
+        Ok(paths) => {
+            for path in paths {
+                println!("> {:?}", path.unwrap().path());
+            }
+        }
     }
 
     println!("`rm a/c/e.txt`");
@@ -102,4 +106,3 @@ fn main() {
         println!("! {:?}", why.kind());
     });
 }
-

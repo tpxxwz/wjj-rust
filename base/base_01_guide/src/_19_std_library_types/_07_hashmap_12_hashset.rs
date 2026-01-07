@@ -26,7 +26,7 @@
 
 use std::collections::HashSet;
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let mut a: HashSet<i32> = vec![1i32, 2, 3].into_iter().collect();
     let mut b: HashSet<i32> = vec![2i32, 3, 4].into_iter().collect();
@@ -56,7 +56,8 @@ fn main() {
     println!("交集：{:?}", a.intersection(&b).collect::<Vec<&i32>>());
 
     // 打印 [1, 5]
-    println!("对称差：{:?}",
-             a.symmetric_difference(&b).collect::<Vec<&i32>>());
+    println!(
+        "对称差：{:?}",
+        a.symmetric_difference(&b).collect::<Vec<&i32>>()
+    );
 }
-

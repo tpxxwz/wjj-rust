@@ -26,7 +26,7 @@ fn coerce_static<'a>(_: &'a i32) -> &'a i32 {
     &NUM
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main1() {
     {
         // 创建一个字符串字面量并打印它：
@@ -66,7 +66,7 @@ fn random_vec() -> &'static [usize; 100] {
     Box::leak(boxed)
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main2() {
     let first: &'static [usize; 100] = random_vec();
     let second: &'static [usize; 100] = random_vec();
@@ -77,7 +77,7 @@ fn main2() {
 // 为了演示这一点，下面的例子使用 Box::leak 动态创建 'static 引用。
 // 在这种情况下，它显然不会存在于整个程序生命周期，而只是从泄漏点开始存在。
 
-#[wjj_lib::gen_test]
+#[test]
 fn main3() {
     let first: &'static [usize; 100] = random_vec();
     let second: &'static [usize; 100] = random_vec();

@@ -1,0 +1,9 @@
+[package]
+name = "dep_orm_sqlx"
+version = "0.0.1"
+edition = "2024"
+
+[dependencies]
+tokio.workspace = true
+sqlx = { version = "0.9.0-alpha.1", features = ["runtime-tokio", "postgres", "macros"] }
+dotenvy = "0.15.7"

@@ -6,8 +6,8 @@
 //
 // 明确指定类型参数的函数调用看起来像这样：fun::<A, B, ...>()。
 
-struct A;          // 具体类型 `A`
-struct S(A);       // 具体类型 `S`
+struct A; // 具体类型 `A`
+struct S(A); // 具体类型 `S`
 struct SGen<T>(T); // 泛型 `SGen`
 
 // 以下函数都获取传入变量的所有权
@@ -31,11 +31,11 @@ fn gen_spec_i32(_s: SGen<i32>) {}
 // 由于 `SGen<T>` 前面有 `<T>`，所以这个函数是关于 `T` 的泛型函数
 fn generic<T>(_s: SGen<T>) {}
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 使用非泛型函数
-    reg_fn(S(A));          // 具体类型
-    gen_spec_t(SGen(A));   // 隐式指定类型参数 `A`
+    reg_fn(S(A)); // 具体类型
+    gen_spec_t(SGen(A)); // 隐式指定类型参数 `A`
     gen_spec_i32(SGen(6)); // 隐式指定类型参数 `i32`
 
     // 为 `generic()` 显式指定类型参数 `char`
@@ -44,4 +44,3 @@ fn main() {
     // 为 `generic()` 隐式指定类型参数 `char`
     generic(SGen('c'));
 }
-

@@ -18,7 +18,7 @@ enum Color {
     Blue = 0x0000ff,
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // `enum` 可以转换为整数。
     println!("zero 的值是 {}", Number::Zero as i32);
@@ -27,4 +27,3 @@ fn main() {
     println!("玫瑰的颜色是 #{:06x}", Color::Red as u32);
     println!("紫罗兰的颜色是 #{:06x}", Color::Blue as u32);
 }
-

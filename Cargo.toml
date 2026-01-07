@@ -15,11 +15,25 @@
 [workspace]
 resolver = "3"
 members = [
-    "wjj_lib",
-    "base/base_01_guide",
+    "common/common_core",
+    "common/common_macros",
+    "common/common_macros_internals",
+    "common/common_lib",
+    "common/common_test",
     "base/base_01_guide",
     "base/base_02_extend",
-    "vendor/async/tokio/tokio_01_hello_world"
+    "deps/dep_async",
+    "deps/dep_error",
+    "deps/dep_log",
+    "deps/dep_orm/dep_orm_rbatis",
+    "deps/dep_orm/dep_orm_sea_orm",
+    "deps/dep_orm/dep_orm_sea_orm/db/migration",
+    "deps/dep_orm/dep_orm_sqlx",
+    "deps/dep_rising_wave",
+    "deps/dep_serialization",
+    "deps/dep_strum",
+    "deps/dep_template",
+    "deps/dep_web",
 ]
 
 [workspace.package]
@@ -28,10 +42,10 @@ license = "MIT"
 rust-version = "1.91.1"
 
 [workspace.dependencies]
-wjj_lib = { path = "wjj_lib" }
 paste = "1.0.15"
 serde = "1.0.228"
-tokio = { version = "1.48.0", features = ["full"] }
+serde_json = "1.0.148"
+tokio = { version = "1.49.0", features = ["full"] }
 
 #[workspace.metadata]
 #ci = { pipeline = "github-actions" }

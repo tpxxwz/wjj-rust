@@ -16,17 +16,17 @@
 // 变量总是可以进行类型标注。数字还可以通过后缀或默认方式来标注。
 // 整数默认为 i32 类型，浮点数默认为 f64 类型。请注意，Rust 也可以从上下文中推断类型。
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 变量可以被类型标注。
     let logical: bool = true;
 
-    let a_float: f64 = 1.0;  // 常规标注
-    let an_integer   = 5i32; // 后缀标注
+    let a_float: f64 = 1.0; // 常规标注
+    let an_integer = 5i32; // 后缀标注
 
     // 或者使用默认类型。
-    let default_float   = 3.0; // `f64`
-    let default_integer = 7;   // `i32`
+    let default_float = 3.0; // `f64`
+    let default_integer = 7; // `i32`
 
     // 类型也可以从上下文中推断。
     let mut inferred_type = 12; // 从另一行推断出类型为 i64。
@@ -51,4 +51,3 @@ fn main() {
     // 使用圆括号 () 构造。
     let my_tuple = (5u32, 1u8, true, -5.04f32);
 }
-

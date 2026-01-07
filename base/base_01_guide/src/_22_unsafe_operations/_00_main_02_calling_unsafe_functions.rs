@@ -4,7 +4,7 @@
 
 use std::slice;
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let some_vector = vec![1, 2, 3, 4];
 
@@ -20,4 +20,3 @@ fn main() {
 
 // 对于 slice::from_raw_parts，必须遵守的一个假设是：传入的指针指向有效内存，且指向的内存类型正确。
 // 如果这些不变量未被遵守，那么程序的行为将是未定义的，无法预知会发生什么。
-

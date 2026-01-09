@@ -8,4 +8,3 @@ pub use err::BaseFmtErrs;
 pub use err::BaseRawErrs;
 pub use err::TemplateRegistration;
 pub use err::TEMPLATE_REGISTRATIONS;
-pub use linkme::distributed_slice;

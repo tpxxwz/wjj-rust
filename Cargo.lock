@@ -926,6 +926,7 @@ dependencies = [
  "common_core",
  "common_macros",
  "handlebars",
+ "linkme",
  "minijinja",
  "serde_json",
  "tera",

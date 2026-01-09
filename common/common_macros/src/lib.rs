@@ -47,14 +47,14 @@ impl WrapAllInterface<Wrap> for WrapAll {
                 err_args: args.clone(),
             }
         });
-        let register_ident = format_ident!("REGISTER_{}", var_name);
+        let register_ident = format_ident!("Register{}", var_name);
 
         self.registrations.push(quote! {
             fn #var_name(env: &mut minijinja::Environment<'static>) {
                 env.add_template(#err_code, #err_tpl).unwrap();
             }
 
-            #[common_core::distributed_slice(common_core::TEMPLATE_REGISTRATIONS)]
+            #[linkme::distributed_slice(common_core::TEMPLATE_REGISTRATIONS)]
             static #register_ident: common_core::TemplateRegistration =
                 common_core::TemplateRegistration {
                     f: #var_name,

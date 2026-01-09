@@ -13,3 +13,4 @@ minijinja = "2.14.0"
 tera = "1.20.1"
 common_core = { path = "../../common/common_core" }
 common_macros = { path = "../../common/common_macros" }
+linkme = "0.3.35"

@@ -9,7 +9,7 @@ pub struct TemplateRegistration {
     pub f: fn(&mut Environment<'static>),
 }
 
-static ENV: Lazy<Arc<Environment<'static>>> = Lazy::new(|| {
+pub static ENV: Lazy<Arc<Environment<'static>>> = Lazy::new(|| {
     let mut env = Environment::new();
     env.set_undefined_behavior(UndefinedBehavior::Strict);
     // 自动收集所有插件注册的模板
@@ -51,14 +51,16 @@ impl Error for RawErr {}
 
 impl Error for FmtErr {}
 
-#[derive(FmtErr)]
-pub enum BaseFmtErrs {
-    #[error(err_code = "999999", err_tpl = "System Error, cause: {{ cause }}")]
-    SysFmtErr,
+#[derive(RawErr)]
+#[err_code_prefix = "999"]
+pub enum BaseRawErrs {
+    #[error(err_code = "00000", err_msg = "System Error")]
+    SysRawErr,
 }
 
-#[derive(RawErr)]
-pub enum BaseRawErrs {
-    #[error(err_code = "999999", err_msg = "System Error")]
-    SysRawErr,
+#[derive(FmtErr)]
+#[err_code_prefix = "999"]
+pub enum BaseFmtErrs {
+    #[error(err_code = "10000", err_tpl = "System Error, cause: {{ cause }}")]
+    SysFmtErr,
 }

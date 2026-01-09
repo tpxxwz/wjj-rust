@@ -4,17 +4,19 @@ use common_macros::{FmtErr, RawErr};
 use serde_json::json;
 
 #[derive(FmtErr)]
+#[err_code_prefix = "001"]
 enum BizFmtErrs {
     #[error(
-        err_code = "101011",
+        err_code = "00001",
         err_tpl = "user login failed Error cause: {{ cause }}"
     )]
     LoginError,
 }
 
 #[derive(RawErr)]
+#[err_code_prefix = "001"]
 enum BizRawErrs {
-    #[error(err_code = "100011", err_msg = "user login limited ")]
+    #[error(err_code = "00002", err_msg = "user login limited ")]
     LimitError,
 }
 

@@ -4,16 +4,19 @@ use once_cell::sync::Lazy;
 use std::error::Error;
 use std::fmt;
 use std::sync::Arc;
+use linkme::distributed_slice;
 
 pub struct TemplateRegistration {
     pub f: fn(&mut Environment<'static>),
 }
+#[distributed_slice]
+pub static TEMPLATE_REGISTRATIONS: [TemplateRegistration] = [..];
 
 pub static ENV: Lazy<Arc<Environment<'static>>> = Lazy::new(|| {
     let mut env = Environment::new();
     env.set_undefined_behavior(UndefinedBehavior::Strict);
     // 自动收集所有插件注册的模板
-    for reg in inventory::iter::<TemplateRegistration> {
+    for reg in TEMPLATE_REGISTRATIONS {
         (reg.f)(&mut env);
     }
     Arc::new(env)

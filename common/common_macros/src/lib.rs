@@ -1,5 +1,5 @@
 use proc_macro::TokenStream;
-use quote::quote;
+use quote::{format_ident, quote};
 
 #[proc_macro_derive(FmtErr, attributes(err_code_prefix, error))]
 pub fn derive_fmt_err(input: TokenStream) -> TokenStream {
@@ -47,14 +47,18 @@ impl WrapAllInterface<Wrap> for WrapAll {
                 err_args: args.clone(),
             }
         });
+        let register_ident = format_ident!("REGISTER_{}", var_name);
+
         self.registrations.push(quote! {
-            inventory::submit! {
-                common_core::TemplateRegistration {
-                    f: |env: &mut minijinja::Environment| {
-                        env.add_template(#err_code, #err_tpl).unwrap();
-                    }
-                }
+            fn #var_name(env: &mut minijinja::Environment<'static>) {
+                env.add_template(#err_code, #err_tpl).unwrap();
             }
+
+            #[common_core::distributed_slice(common_core::TEMPLATE_REGISTRATIONS)]
+            static #register_ident: common_core::TemplateRegistration =
+                common_core::TemplateRegistration {
+                    f: #var_name,
+                };
         });
     }
     fn quote(&mut self, enum_name: &syn::Ident) -> proc_macro2::TokenStream {

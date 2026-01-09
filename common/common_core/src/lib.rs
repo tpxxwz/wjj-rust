@@ -7,10 +7,5 @@ pub use crate::err::RawErr;
 pub use err::BaseFmtErrs;
 pub use err::BaseRawErrs;
 pub use err::TemplateRegistration;
-
-inventory::collect!(TemplateRegistration);
-
-// #[ctor::ctor]
-// fn init_common_core() {
-//     let _ = &*err::ENV;
-// }
+pub use err::TEMPLATE_REGISTRATIONS;
+pub use linkme::distributed_slice;

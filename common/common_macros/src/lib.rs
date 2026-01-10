@@ -50,7 +50,7 @@ impl WrapAllInterface<Wrap> for WrapAll {
         let register_ident = format_ident!("Register{}", var_name);
 
         self.registrations.push(quote! {
-            fn #var_name(env: &mut minijinja::Environment<'static>) {
+            fn #var_name(env: &mut common_core::Environment<'static>) {
                 env.add_template(#err_code, #err_tpl).unwrap();
             }
 
@@ -64,16 +64,17 @@ impl WrapAllInterface<Wrap> for WrapAll {
     fn quote(&mut self, enum_name: &syn::Ident) -> proc_macro2::TokenStream {
         let match_arms = self.match_arms.clone();
         let registrations = self.registrations.clone();
-        quote! {
+        let expanded = quote! {
             impl #enum_name {
-                pub fn fmt(&self, args: serde_json::Value) -> common_core::FmtErr {
+                pub fn fmt(&self, args: common_core::Value) -> common_core::FmtErr {
                     match self {
                         #(#match_arms),*
                     }
                 }
             }
             #(#registrations)*
-        }
+        };
+        expanded.into()
     }
 }
 

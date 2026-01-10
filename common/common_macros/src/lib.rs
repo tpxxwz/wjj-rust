@@ -1,21 +1,24 @@
 use proc_macro::TokenStream;
 use quote::{format_ident, quote};
 
-#[proc_macro_derive(FmtErr, attributes(err_code_prefix, error))]
+#[proc_macro_derive(fmt_err, attributes(err_code_prefix, error))]
 pub fn derive_fmt_err(input: TokenStream) -> TokenStream {
     let ast = syn::parse_macro_input!(input as syn::DeriveInput);
     let wrap_all = &mut WrapAll {
         match_arms: Vec::new(),
-        registrations: Vec::new(),
+        template_registrations: Vec::new(),
+        err_code_registrations: Vec::new(),
+        tpl_reg_seq: 0,
     };
     expand(ast, "FmtErr", wrap_all, Wrap::new).into()
 }
 
-#[proc_macro_derive(RawErr, attributes(err_code_prefix, error))]
+#[proc_macro_derive(raw_err, attributes(err_code_prefix, error))]
 pub fn derive_raw_err(input: TokenStream) -> TokenStream {
     let ast = syn::parse_macro_input!(input as syn::DeriveInput);
     let wrap_all = &mut WrapAll1 {
         match_arms: Vec::new(),
+        err_code_registrations: Vec::new(),
     };
     expand(ast, "RawErr", wrap_all, Wrap1::new).into()
 }
@@ -33,13 +36,14 @@ trait WrapInterface {
 
 struct WrapAll {
     match_arms: Vec<proc_macro2::TokenStream>,
-    registrations: Vec<proc_macro2::TokenStream>,
+    template_registrations: Vec<proc_macro2::TokenStream>,
+    err_code_registrations: Vec<proc_macro2::TokenStream>,
+    tpl_reg_seq: usize,
 }
 
 impl WrapAllInterface<Wrap> for WrapAll {
     fn push(&mut self, enum_name: &syn::Ident, wrap: Wrap) {
         let err_code = wrap.err_code;
-        let err_tpl = wrap.err_tpl;
         let var_name = wrap.var_name;
         self.match_arms.push(quote! {
             #enum_name::#var_name => common_core::FmtErr {
@@ -47,34 +51,49 @@ impl WrapAllInterface<Wrap> for WrapAll {
                 err_args: args.clone(),
             }
         });
-        let register_ident = format_ident!("Register{}", var_name);
-
-        self.registrations.push(quote! {
-            fn #var_name(env: &mut common_core::Environment<'static>) {
-                env.add_template(#err_code, #err_tpl).unwrap();
+        let err_code_reg = format_ident!("ERR_CODE_{}", err_code.clone().unwrap_or("".to_string()));
+        self.err_code_registrations.push(quote! {
+            #[linkme::distributed_slice(common_core::ERR_CODE_REGISTRATIONS)]
+            static #err_code_reg: common_core::ErrCodeRegistration =
+                common_core::ErrCodeRegistration {
+                    err_code: #err_code,
+                };
+        });
+        let err_tpl = wrap.err_tpl;
+        self.tpl_reg_seq += 1;
+        let tpl_reg = format_ident!("TPL_REG_SEQ_{}", self.tpl_reg_seq);
+        let tpl_reg_f = format_ident!("TPL_REG_SEQ_{}_f", self.tpl_reg_seq);
+        let enum_name_str = enum_name.to_string();
+        let var_name_str = var_name.to_string();
+        self.template_registrations.push(quote! {
+            fn #tpl_reg_f(env: &mut common_core::Environment<'static>) {
+                env.add_template(#err_code, #err_tpl).expect(&format!(
+                    "template registration failed, enum: {}, var_name: {}, err_code: {}, err_tpl: {}",
+                    #enum_name_str, #var_name_str, #err_code, #err_tpl)
+                );
             }
-
             #[linkme::distributed_slice(common_core::TEMPLATE_REGISTRATIONS)]
-            static #register_ident: common_core::TemplateRegistration =
+            static #tpl_reg: common_core::TemplateRegistration =
                 common_core::TemplateRegistration {
-                    f: #var_name,
+                    f: #tpl_reg_f,
                 };
         });
     }
     fn quote(&mut self, enum_name: &syn::Ident) -> proc_macro2::TokenStream {
         let match_arms = self.match_arms.clone();
-        let registrations = self.registrations.clone();
-        let expanded = quote! {
+        let err_code_registrations = self.err_code_registrations.clone();
+        let template_registrations = self.template_registrations.clone();
+        quote! {
             impl #enum_name {
-                pub fn fmt(&self, args: common_core::Value) -> common_core::FmtErr {
+                pub fn to_err(&self, args: common_core::Value) -> common_core::FmtErr {
                     match self {
                         #(#match_arms),*
                     }
                 }
             }
-            #(#registrations)*
-        };
-        expanded.into()
+            #(#err_code_registrations)*
+            #(#template_registrations)*
+        }
     }
 }
 
@@ -120,6 +139,7 @@ impl WrapInterface for Wrap {
 
 struct WrapAll1 {
     match_arms: Vec<proc_macro2::TokenStream>,
+    err_code_registrations: Vec<proc_macro2::TokenStream>,
 }
 impl WrapAllInterface<Wrap1> for WrapAll1 {
     fn push(&mut self, enum_name: &syn::Ident, wrap: Wrap1) {
@@ -132,17 +152,27 @@ impl WrapAllInterface<Wrap1> for WrapAll1 {
                 err_msg: #err_msg,
             }
         });
+        let err_code_reg = format_ident!("ERR_CODE_{}", err_code.clone().unwrap_or("".to_string()));
+        self.err_code_registrations.push(quote! {
+            #[linkme::distributed_slice(common_core::ERR_CODE_REGISTRATIONS)]
+            static #err_code_reg: common_core::ErrCodeRegistration =
+                common_core::ErrCodeRegistration {
+                    err_code: #err_code,
+                };
+        });
     }
     fn quote(&mut self, enum_name: &syn::Ident) -> proc_macro2::TokenStream {
         let match_arms = self.match_arms.clone();
+        let err_code_registrations = self.err_code_registrations.clone();
         quote! {
             impl #enum_name {
-                pub fn raw(&self) -> common_core::RawErr {
+                pub fn to_err(&self) -> common_core::RawErr {
                     match self {
                         #(#match_arms),*
                     }
                 }
             }
+            #(#err_code_registrations)*
         }
     }
 }

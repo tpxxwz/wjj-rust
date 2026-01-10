@@ -1,9 +1,9 @@
 use common_core::BaseFmtErrs::SysFmtErr;
 use common_core::BaseRawErrs::SysRawErr;
-use common_macros::{FmtErr, RawErr};
+use common_macros::{fmt_err, raw_err};
 use serde_json::json;
 
-#[derive(FmtErr)]
+#[derive(fmt_err)]
 #[err_code_prefix = "001"]
 enum BizFmtErrs {
     #[error(
@@ -13,7 +13,7 @@ enum BizFmtErrs {
     LoginError,
 }
 
-#[derive(RawErr)]
+#[derive(raw_err)]
 #[err_code_prefix = "001"]
 enum BizRawErrs {
     #[error(err_code = "00002", err_msg = "user login limited ")]
@@ -22,16 +22,16 @@ enum BizRawErrs {
 
 #[test]
 fn test_hello() {
-    let err = BizFmtErrs::LoginError.fmt(json!({
+    let err = BizFmtErrs::LoginError.to_err(json!({
         "cause": "password error"
     }));
     println!("{}", err);
-    let err = SysFmtErr.fmt(json!({
+    let err = SysFmtErr.to_err(json!({
         "cause": "network error"
     }));
     println!("{}", err);
-    let err = BizRawErrs::LimitError.raw();
+    let err = BizRawErrs::LimitError.to_err();
     println!("{}", err);
-    let err = SysRawErr.raw();
+    let err = SysRawErr.to_err();
     println!("{}", err);
 }

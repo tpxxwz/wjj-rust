@@ -1,10 +1,12 @@
-use common_macros::{FmtErr, RawErr};
+use common_core::err;
+use common_macros::{fmt_err, raw_err};
+use linkme::distributed_slice;
 use minijinja::{Environment, UndefinedBehavior};
 use once_cell::sync::Lazy;
+use std::collections::HashSet;
 use std::error::Error;
 use std::fmt;
 use std::sync::Arc;
-use linkme::distributed_slice;
 
 pub struct TemplateRegistration {
     pub f: fn(&mut Environment<'static>),
@@ -12,7 +14,14 @@ pub struct TemplateRegistration {
 #[distributed_slice]
 pub static TEMPLATE_REGISTRATIONS: [TemplateRegistration] = [..];
 
-pub static ENV: Lazy<Arc<Environment<'static>>> = Lazy::new(|| {
+pub struct ErrCodeRegistration {
+    pub err_code: &'static str,
+}
+
+#[distributed_slice]
+pub static ERR_CODE_REGISTRATIONS: [ErrCodeRegistration] = [..];
+
+static ENV: Lazy<Arc<Environment<'static>>> = Lazy::new(|| {
     let mut env = Environment::new();
     env.set_undefined_behavior(UndefinedBehavior::Strict);
     // 自动收集所有插件注册的模板
@@ -21,6 +30,16 @@ pub static ENV: Lazy<Arc<Environment<'static>>> = Lazy::new(|| {
     }
     Arc::new(env)
 });
+
+pub fn init() {
+    let _ = &*ENV;
+    let mut seen = HashSet::new();
+    for reg in ERR_CODE_REGISTRATIONS {
+        if !seen.insert(reg.err_code) {
+            panic!("Duplicate err_code detected: {}", reg.err_code);
+        }
+    }
+}
 
 #[derive(Debug)]
 pub struct RawErr {
@@ -54,14 +73,14 @@ impl Error for RawErr {}
 
 impl Error for FmtErr {}
 
-#[derive(RawErr)]
+#[derive(raw_err)]
 #[err_code_prefix = "999"]
 pub enum BaseRawErrs {
     #[error(err_code = "00000", err_msg = "System Error")]
     SysRawErr,
 }
 
-#[derive(FmtErr)]
+#[derive(fmt_err)]
 #[err_code_prefix = "999"]
 pub enum BaseFmtErrs {
     #[error(err_code = "10000", err_tpl = "System Error, cause: {{ cause }}")]

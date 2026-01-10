@@ -56,7 +56,7 @@ fn anyhow_without_context_test() {
 
 fn fmt_err() -> Result<()> {
     Err(SysFmtErr
-        .fmt(json!({
+        .to_err(json!({
             "cause": "network error"
         }))
         .into())
@@ -75,5 +75,4 @@ fn fmt_err_test() {
     } else {
         println!("Unknown error: {:?}", err);
     }
-
 }

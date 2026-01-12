@@ -9,10 +9,9 @@ fn unused_function() {}
 fn noisy_unused_function() {}
 // FIXME ^ 添加一个属性来抑制警告
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     used_function();
 }
 // 注意，在实际程序中，你应该消除无用代码。
 // 在这些示例中，我们会在某些地方允许存在无用代码，这是因为这些示例具有交互性质。
-

@@ -23,7 +23,7 @@ fn new_edition(book: &mut Book) {
     println!("我可变地借用了《{}》- {} 版", book.title, book.year);
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 创建一个名为 `immutabook` 的不可变 Book 实例
     let immutabook = Book {
@@ -49,4 +49,3 @@ fn main() {
     // new_edition(&mut immutabook);
     // 修复：^ 注释掉此行
 }
-

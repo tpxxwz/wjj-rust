@@ -8,7 +8,7 @@
 // 让我们用函数重写 FizzBuzz 吧！
 
 // 与 C/C++ 不同，Rust 中函数定义的顺序没有限制
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 我们可以在这里使用函数，并在稍后的某处定义它
     fizzbuzz_to(100);
@@ -44,4 +44,3 @@ fn fizzbuzz_to(n: u32) {
         fizzbuzz(n);
     }
 }
-

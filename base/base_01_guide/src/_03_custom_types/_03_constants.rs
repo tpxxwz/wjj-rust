@@ -13,7 +13,7 @@ fn is_big(n: i32) -> bool {
     n > THRESHOLD
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let n = 16;
 
@@ -26,4 +26,3 @@ fn main() {
     // THRESHOLD = 5;
     // 修复：^ 注释掉此行
 }
-

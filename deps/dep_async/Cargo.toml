@@ -1,0 +1,12 @@
+[package]
+name = "dep_async"
+version = "0.0.1"
+edition = "2024"
+
+[dependencies]
+tokio.workspace = true
+mini-redis = "0.4.1"
+bytes = "1.11.0"
+futures = "0.3.31"
+tokio-stream = "0.1.17"
+async-stream = "0.3.6"

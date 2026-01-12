@@ -1,0 +1,6 @@
+[package]
+name = "dep_rising_wave"
+version = "0.0.1"
+edition = "2024"
+
+[dependencies]

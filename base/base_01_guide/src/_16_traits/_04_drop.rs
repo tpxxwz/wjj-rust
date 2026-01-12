@@ -18,7 +18,7 @@ impl Drop for Droppable {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main1() {
     let _a = Droppable { name: "a" };
 
@@ -48,7 +48,6 @@ fn main1() {
     // `_a` 在这里**不会**被再次 `drop`，因为它已经
     // 被（手动）`drop` 过了
 }
-
 
 // 下面是一个更实用的例子，展示如何使用 Drop 特质在不再需要临时文件时自动清理它们：
 
@@ -82,7 +81,7 @@ impl Drop for TempFile {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main2() -> std::io::Result<()> {
     // 创建新作用域来演示丢弃行为
     {
@@ -99,4 +98,3 @@ fn main2() -> std::io::Result<()> {
 
     Ok(())
 }
-

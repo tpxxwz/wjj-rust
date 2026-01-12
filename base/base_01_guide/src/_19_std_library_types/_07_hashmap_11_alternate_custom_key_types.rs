@@ -20,41 +20,37 @@ use std::collections::HashMap;
 
 // Eq 要求你在类型上派生 PartialEq。
 #[derive(PartialEq, Eq, Hash)]
-struct Account<'a>{
+struct Account<'a> {
     username: &'a str,
     password: &'a str,
 }
 
-struct AccountInfo<'a>{
+struct AccountInfo<'a> {
     name: &'a str,
     email: &'a str,
 }
 
 type Accounts<'a> = HashMap<Account<'a>, AccountInfo<'a>>;
 
-fn try_logon<'a>(accounts: &Accounts<'a>,
-                 username: &'a str, password: &'a str){
+fn try_logon<'a>(accounts: &Accounts<'a>, username: &'a str, password: &'a str) {
     println!("用户名：{}", username);
     println!("密码：{}", password);
     println!("正在尝试登录...");
 
-    let logon = Account {
-        username,
-        password,
-    };
+    let logon = Account { username, password };
 
     match accounts.get(&logon) {
         Some(account_info) => {
             println!("登录成功！");
             println!("姓名：{}", account_info.name);
             println!("电子邮箱：{}", account_info.email);
-        },
+        }
         _ => println!("登录失败！"),
     }
 }
 
-#[wjj_lib::gen_test]
-fn main(){
+#[test]
+fn main() {
     let mut accounts: Accounts = HashMap::new();
 
     let account = Account {
@@ -73,4 +69,3 @@ fn main(){
 
     try_logon(&accounts, "j.everyman", "password123");
 }
-

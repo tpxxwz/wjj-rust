@@ -2,7 +2,7 @@
 // Rust 通过 match 关键字提供模式匹配，类似于 C 语言的 switch。
 // 第一个匹配的分支会被求值，并且必须覆盖所有可能的值。
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let number = 13;
     // TODO ^ 尝试为 `number` 赋不同的值
@@ -32,4 +32,3 @@ fn main() {
 
     println!("{} -> {}", boolean, binary);
 }
-

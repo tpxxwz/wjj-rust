@@ -14,10 +14,10 @@
 enum Foo {
     Bar,
     Baz,
-    Qux(u32)
+    Qux(u32),
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 对于这种情况，if let 更加简洁，而且还允许指定各种失败时的处理选项：
 
@@ -90,10 +90,7 @@ fn main() {
 
     // 变量 a 匹配 Foo::Bar
     // if Foo::Bar == a {
-        // ^-- 这会导致编译时错误。请改用 `if let`。
-        println!("a 是 foobar");
+    // ^-- 这会导致编译时错误。请改用 `if let`。
+    println!("a 是 foobar");
     // }
 }
-
-
-

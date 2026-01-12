@@ -42,7 +42,6 @@ fn parse_csv_document2(src: impl std::io::BufRead) -> std::io::Result<Vec<Vec<St
 // 注意，使用 impl Trait 作为参数类型意味着你无法显式指定使用的函数形式。
 // 例如，parse_csv_document::<std::io::Empty>(std::io::empty()) 在第二个例子中将无法工作。
 
-
 // 作为返回类型
 // 如果函数返回一个实现了 MyTrait 的类型，你可以将其返回类型写为 -> impl MyTrait。这可以大大简化类型签名！
 
@@ -60,14 +59,11 @@ fn combine_vecs_explicit_return_type(
 
 // 这是完全相同的函数，但它的返回类型使用了 `impl Trait`。
 // 看看它变得多么简单！
-fn combine_vecs(
-    v: Vec<i32>,
-    u: Vec<i32>,
-) -> impl Iterator<Item=i32> {
+fn combine_vecs(v: Vec<i32>, u: Vec<i32>) -> impl Iterator<Item = i32> {
     v.into_iter().chain(u.into_iter()).cycle()
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main1() {
     let v1 = vec![1, 2, 3];
     let v2 = vec![4, 5];
@@ -86,11 +82,11 @@ fn main1() {
 
 // 返回一个将 `y` 加到输入值上的函数
 fn make_adder_function(y: i32) -> impl Fn(i32) -> i32 {
-    let closure = move |x: i32| { x + y };
+    let closure = move |x: i32| x + y;
     closure
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main2() {
     let plus_one = make_adder_function(1);
     assert_eq!(plus_one(2), 3);
@@ -101,16 +97,12 @@ fn main2() {
 // 但使用 impl Trait，你可以轻松实现：
 
 fn double_positives<'a>(numbers: &'a Vec<i32>) -> impl Iterator<Item = i32> + 'a {
-    numbers
-        .iter()
-        .filter(|x| x > &&0)
-        .map(|x| x * 2)
+    numbers.iter().filter(|x| x > &&0).map(|x| x * 2)
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main3() {
     let singles = vec![-3, -2, 2, 3];
     let doubles = double_positives(&singles);
     assert_eq!(doubles.collect::<Vec<i32>>(), vec![4, 6]);
 }
-

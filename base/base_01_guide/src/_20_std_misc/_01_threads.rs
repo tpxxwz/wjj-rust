@@ -6,7 +6,7 @@ use std::thread;
 const NTHREADS: u32 = 10;
 
 // 这是主线程
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 创建一个向量来存储生成的子线程
     let mut children = vec![];
@@ -24,4 +24,3 @@ fn main() {
     }
 }
 // 这些线程将由操作系统进行调度。
-

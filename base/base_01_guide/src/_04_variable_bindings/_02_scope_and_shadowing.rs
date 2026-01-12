@@ -1,7 +1,7 @@
 // 作用域和遮蔽
 // 变量绑定有作用域，它们被限制在一个代码块中生存。代码块是由花括号 {} 包围的一系列语句。
 
-#[wjj_lib::gen_test]
+#[test]
 fn main1() {
     // 这个绑定存在于 main 函数中
     let long_lived_binding = 1;
@@ -24,7 +24,7 @@ fn main1() {
 
 // 此外，Rust 允许变量遮蔽。
 
-#[wjj_lib::gen_test]
+#[test]
 fn main2() {
     let shadowed_binding = 1;
 
@@ -42,4 +42,3 @@ fn main2() {
     let shadowed_binding = 2;
     println!("外部代码块中被遮蔽：{}", shadowed_binding);
 }
-

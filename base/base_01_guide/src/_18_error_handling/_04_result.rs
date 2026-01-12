@@ -23,7 +23,7 @@ fn multiply(first_number_str: &str, second_number_str: &str) -> i32 {
     first_number * second_number
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main1() {
     let twenty = multiply("10", "2");
     println!("double is {}", twenty);
@@ -46,7 +46,7 @@ fn main1() {
 
 use std::num::ParseIntError;
 
-#[wjj_lib::gen_test]
+#[test]
 fn main2() -> Result<(), ParseIntError> {
     let number_str = "10";
     let number = match number_str.parse::<i32>() {
@@ -56,5 +56,3 @@ fn main2() -> Result<(), ParseIntError> {
     println!("{}", number);
     Ok(())
 }
-
-

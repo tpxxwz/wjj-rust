@@ -12,7 +12,7 @@ fn function() {
     println!("我是函数！");
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 定义一个满足 `Fn` 约束的闭包
     let closure = || println!("我是闭包！");
@@ -21,5 +21,3 @@ fn main() {
     call_me(function);
 }
 // 另外需要注意的是，Fn、FnMut 和 FnOnce 这些 trait 决定了闭包如何从外部作用域捕获变量。
-
-

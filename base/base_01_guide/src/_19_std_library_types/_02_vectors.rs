@@ -6,7 +6,7 @@
 // 容量
 // 容量表示为向量预留的内存量。只要长度小于容量，向量就可以增长。当需要超过这个阈值时，向量会被重新分配更大的容量。
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 迭代器可以被收集到向量中
     let collected_iterator: Vec<i32> = (0..10).collect();
@@ -57,4 +57,3 @@ fn main() {
     }
     println!("更新后的向量：{:?}", xs);
 }
-

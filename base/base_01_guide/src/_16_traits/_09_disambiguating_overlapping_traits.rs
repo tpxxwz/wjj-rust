@@ -34,7 +34,7 @@ impl AgeWidget for Form {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let form = Form {
         username: "rustacean".to_owned(),
@@ -51,4 +51,3 @@ fn main() {
     let age = <Form as AgeWidget>::get(&form);
     assert_eq!(28, age);
 }
-

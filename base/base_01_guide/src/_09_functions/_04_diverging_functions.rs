@@ -11,14 +11,14 @@ fn foo() -> ! {
 fn some_fn() {
     ()
 }
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let _a: () = some_fn();
     println!("这个函数返回了，你可以看到这一行。");
 }
 // 与之相对的是这个函数，它永远不会将控制权返回给调用者。
 fn main1() {
-    let x= panic!("此调用永不返回。");
+    let x = panic!("此调用永不返回。");
     println!("你永远不会看到这一行！");
 }
 
@@ -46,4 +46,3 @@ fn main2() {
     println!("9 以下（不包括 9）的奇数之和：{}", sum_odd_numbers(9));
 }
 // 它也是永远循环的函数（例如 loop {}）的返回类型，比如网络服务器，或终止进程的函数（例如 exit()）。
-

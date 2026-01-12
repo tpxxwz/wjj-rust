@@ -4,7 +4,10 @@
 // trait 可以为任何数据类型实现。在下面的例子中，我们定义了 Animal，一组方法的集合。
 // 然后为 Sheep 数据类型实现 Animal trait，这样就可以对 Sheep 使用 Animal 中的方法。
 
-struct Sheep { naked: bool, name: &'static str }
+struct Sheep {
+    naked: bool,
+    name: &'static str,
+}
 
 trait Animal {
     // 关联函数签名；`Self` 指代实现者类型。
@@ -41,7 +44,10 @@ impl Sheep {
 impl Animal for Sheep {
     // `Self` 是实现者类型，即 `Sheep`
     fn new(name: &'static str) -> Sheep {
-        Sheep { name: name, naked: false }
+        Sheep {
+            name: name,
+            naked: false,
+        }
     }
 
     fn name(&self) -> &'static str {
@@ -63,7 +69,7 @@ impl Animal for Sheep {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 在这种情况下需要类型标注
     let mut dolly: Sheep = Animal::new("多莉");
@@ -73,4 +79,3 @@ fn main() {
     dolly.shear();
     dolly.talk();
 }
-

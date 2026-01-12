@@ -11,14 +11,24 @@
 
 #![allow(dead_code)]
 
-#[derive(Debug)] enum Food { CordonBleu, Steak, Sushi }
-#[derive(Debug)] enum Day { Monday, Tuesday, Wednesday }
+#[derive(Debug)]
+enum Food {
+    CordonBleu,
+    Steak,
+    Sushi,
+}
+#[derive(Debug)]
+enum Day {
+    Monday,
+    Tuesday,
+    Wednesday,
+}
 
 // 我们没有制作寿司的原料。
 fn have_ingredients(food: Food) -> Option<Food> {
     match food {
         Food::Sushi => None,
-        _           => Some(food),
+        _ => Some(food),
     }
 }
 
@@ -26,7 +36,7 @@ fn have_ingredients(food: Food) -> Option<Food> {
 fn have_recipe(food: Food) -> Option<Food> {
     match food {
         Food::CordonBleu => None,
-        _                => Some(food),
+        _ => Some(food),
     }
 }
 
@@ -34,7 +44,7 @@ fn have_recipe(food: Food) -> Option<Food> {
 // 我们可以用一系列的 `match` 来表示这个逻辑：
 fn cookable_v1(food: Food) -> Option<Food> {
     match have_recipe(food) {
-        None       => None,
+        None => None,
         Some(food) => have_ingredients(food),
     }
 }
@@ -53,11 +63,11 @@ fn cookable_v2(food: Food) -> Option<Food> {
 fn eat(food: Food, day: Day) {
     match cookable_v3(food) {
         Some(food) => println!("太好了！在 {:?} 我们可以吃到 {:?}。", day, food),
-        None       => println!("哦不。我们在 {:?} 没有东西吃吗？", day),
+        None => println!("哦不。我们在 {:?} 没有东西吃吗？", day),
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let (cordon_bleu, steak, sushi) = (Food::CordonBleu, Food::Steak, Food::Sushi);
 
@@ -65,4 +75,3 @@ fn main() {
     eat(steak, Day::Tuesday);
     eat(sushi, Day::Wednesday);
 }
-

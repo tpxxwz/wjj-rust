@@ -12,14 +12,16 @@ fn decrease(number: i32) {
 }
 
 fn help() {
-    println!("用法：
+    println!(
+        "用法：
 match_args <字符串>
     检查给定的字符串是否为正确答案。
 match_args {{increase|decrease}} <整数>
-    将给定的整数增加或减少 1。");
+    将给定的整数增加或减少 1。"
+    );
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let args: Vec<String> = env::args().collect();
 
@@ -27,13 +29,11 @@ fn main() {
         // 未传递参数
         1 => {
             println!("我的名字是 'match_args'。试试传递一些参数吧！");
-        },
+        }
         // 传递了一个参数
-        2 => {
-            match args[1].parse() {
-                Ok(42) => println!("这就是正确答案！"),
-                _ => println!("这不是正确答案。"),
-            }
+        2 => match args[1].parse() {
+            Ok(42) => println!("这就是正确答案！"),
+            _ => println!("这不是正确答案。"),
         },
         // 传递了一个命令和一个参数
         3 => {
@@ -41,14 +41,12 @@ fn main() {
             let num = &args[2];
             // 解析数字
             let number: i32 = match num.parse() {
-                Ok(n) => {
-                    n
-                },
+                Ok(n) => n,
                 Err(_) => {
                     eprintln!("错误：第二个参数不是整数");
                     help();
                     return;
-                },
+                }
             };
             // 解析命令
             match &cmd[..] {
@@ -57,9 +55,9 @@ fn main() {
                 _ => {
                     eprintln!("错误：无效的命令");
                     help();
-                },
+                }
             }
-        },
+        }
         // 所有其他情况
         _ => {
             // 显示帮助信息
@@ -67,8 +65,6 @@ fn main() {
         }
     }
 }
-
-
 
 // 如果你将程序命名为 match_args.rs 并使用 rustc match_args.rs 编译它，你可以按以下方式执行：
 //

@@ -3,7 +3,7 @@
 //
 // 让我们用 while 循环来编写著名的 FizzBuzz 程序。
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 计数器变量
     let mut n = 1;
@@ -24,4 +24,3 @@ fn main() {
         n += 1;
     }
 }
-

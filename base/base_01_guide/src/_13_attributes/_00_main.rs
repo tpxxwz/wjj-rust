@@ -15,7 +15,7 @@
 // 以下是一个示例，其中 #![allow(unused_variables)] 应用于整个 crate（如果放置在 main.rs 中）：
 #![allow(unused_variables)]
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let x = 3; // 这通常会警告未使用的变量。
 }
@@ -46,4 +46,3 @@ struct Rectangle {
 //     value4,
 //     value5
 // )]
-

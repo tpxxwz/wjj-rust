@@ -1,0 +1,7 @@
+[package]
+name = "dep_strum"
+version = "0.0.1"
+edition = "2024"
+
+[dependencies]
+strum = { version = "0.27.2", features = ["derive"] }

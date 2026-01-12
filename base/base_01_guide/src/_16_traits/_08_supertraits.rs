@@ -31,6 +31,5 @@ fn comp_sci_student_greeting(student: &dyn CompSciStudent) -> String {
     )
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {}
-

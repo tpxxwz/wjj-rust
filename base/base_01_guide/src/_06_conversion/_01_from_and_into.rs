@@ -26,7 +26,7 @@ impl From<i32> for Number {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main1() {
     let num = Number::from(30);
     println!("我的数字是 {:?}", num);
@@ -48,7 +48,7 @@ use std::convert::Into;
 //     }
 // }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main2() {
     let int = 5;
     // 尝试移除类型标注
@@ -60,7 +60,7 @@ fn main2() {
 // From 和 Into 被设计为互补的。我们不需要为两个特质都提供实现。
 // 如果你为你的类型实现了 From 特质，Into 会在必要时调用它。
 // ** 但请注意，反过来并不成立：为你的类型实现 Into 不会自动为它提供 From 的实现。
-#[wjj_lib::gen_test]
+#[test]
 fn main3() {
     let int = 5;
     // 使用 `Into`

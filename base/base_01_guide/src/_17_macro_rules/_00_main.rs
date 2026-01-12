@@ -15,7 +15,7 @@ macro_rules! say_hello {
     };
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 这个调用将展开成 `println!("Hello!")`
     say_hello!()
@@ -30,6 +30,3 @@ fn main() {
 //
 // 可变参数接口。有时你可能想定义一个接受可变数量参数的接口。
 // 例如 println!，它可以根据格式字符串接受任意数量的参数。（稍后会详细介绍）
-
-
-

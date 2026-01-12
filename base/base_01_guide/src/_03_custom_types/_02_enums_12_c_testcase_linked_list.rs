@@ -59,7 +59,7 @@ impl List {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 创建空链表
     let mut list = List::new();
@@ -73,4 +73,3 @@ fn main() {
     println!("链表长度为：{}", list.len());
     println!("{}", list.stringify());
 }
-

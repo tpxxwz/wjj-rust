@@ -18,12 +18,14 @@
 
 // `F` 必须实现 `Fn` 用于一个不接受输入且不返回任何内容的闭包
 // - 这正是 `print` 所需要的
-fn apply<F>(f: F) where
-    F: Fn() {
+fn apply<F>(f: F)
+where
+    F: Fn(),
+{
     f();
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let x = 7;
 

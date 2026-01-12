@@ -1,15 +1,4 @@
-#![allow(
-    dead_code,
-    unreachable_code,
-    unused_labels,
-    unused_imports,
-    unused_variables,
-    unused_assignments,
-    unused_attributes,
-    unused_must_use,
-    path_statements,
-    unexpected_cfgs
-)]
+#![allow(unused, dead_code, unreachable_code, path_statements, unexpected_cfgs)]
 
 pub mod _02_primitives;
 pub mod _03_custom_types;

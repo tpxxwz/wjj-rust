@@ -4,7 +4,7 @@
 //
 // 可以使用 let 关键字将值（如字面量）绑定到变量。
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let an_integer = 1u32;
     let a_boolean = true;
@@ -25,4 +25,3 @@ fn main() {
     // 修复：^ 在变量名前加下划线以消除警告
     // 注意：在浏览器中可能不会显示警告
 }
-

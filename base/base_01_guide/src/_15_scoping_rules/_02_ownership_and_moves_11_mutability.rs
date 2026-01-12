@@ -1,7 +1,7 @@
 // 可变性
 // 当所有权转移时，数据的可变性可以改变。
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let immutable_box = Box::new(5u32);
 
@@ -20,4 +20,3 @@ fn main() {
 
     println!("mutable_box 现在包含 {}", mutable_box);
 }
-

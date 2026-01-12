@@ -14,7 +14,7 @@ enum Role {
     Teacher,
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 显式 `use` 每个名称，使它们可以不需要
     // 手动作用域限定就能使用。
@@ -41,4 +41,3 @@ fn main() {
         Teacher => println!("教师正在传播知识！"),
     }
 }
-

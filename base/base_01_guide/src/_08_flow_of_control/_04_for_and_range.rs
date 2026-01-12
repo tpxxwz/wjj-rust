@@ -3,7 +3,7 @@
 // for in 结构可用于遍历 Iterator。创建迭代器最简单的方法之一是使用区间表示法 a..b。这会生成从 a（包含）到 b（不包含）的值，步长为 1。
 //
 // 让我们用 for 而不是 while 来编写 FizzBuzz。
-#[wjj_lib::gen_test]
+#[test]
 fn main1() {
     // `n` 在每次迭代中将取值：1, 2, ..., 100
     for n in 1..101 {
@@ -40,7 +40,7 @@ fn main1() {
 //
 // into_iter、iter 和 iter_mut 都以不同的方式处理集合到迭代器的转换，通过提供对数据的不同视图。
 
-#[wjj_lib::gen_test]
+#[test]
 fn main2() {
     // iter - 在每次迭代中借用集合的每个元素。因此，集合保持不变，并且在循环之后可以重复使用。
     let names = vec!["Bob", "Frank", "Ferris"];
@@ -82,4 +82,3 @@ fn main2() {
     println!("names: {:?}", names);
 }
 // 在上面的代码片段中，注意 match 分支的类型，这是迭代类型的关键区别。类型的差异意味着可以执行不同的操作。
-

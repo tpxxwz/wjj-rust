@@ -10,15 +10,19 @@ use std::collections::HashMap;
 
 fn call(number: &str) -> &str {
     match number {
-        "798-1364" => "很抱歉，无法接通您拨打的电话。
-            请挂机后重试。",
-        "645-7689" => "您好，这里是 Awesome 先生的披萨店。我是 Fred。
-            请问今天您想点些什么？",
-        _ => "嗨！请问是哪位？"
+        "798-1364" => {
+            "很抱歉，无法接通您拨打的电话。
+            请挂机后重试。"
+        }
+        "645-7689" => {
+            "您好，这里是 Awesome 先生的披萨店。我是 Fred。
+            请问今天您想点些什么？"
+        }
+        _ => "嗨！请问是哪位？",
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let mut contacts = HashMap::new();
 
@@ -50,4 +54,3 @@ fn main() {
         println!("正在呼叫{}：{}", contact, call(number));
     }
 }
-

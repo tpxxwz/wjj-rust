@@ -40,7 +40,7 @@ fn fibonacci() -> Fibonacci {
     Fibonacci { curr: 0, next: 1 }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // `0..3` 是一个生成 0、1 和 2 的 `Iterator`。
     let mut sequence = 0..3;
@@ -78,4 +78,3 @@ fn main() {
         println!("> {}", i);
     }
 }
-

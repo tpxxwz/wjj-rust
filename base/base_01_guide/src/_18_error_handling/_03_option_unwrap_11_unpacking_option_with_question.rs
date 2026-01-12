@@ -28,7 +28,6 @@ struct PhoneNumber {
 }
 
 impl Person {
-
     // 如果存在，获取此人工作电话号码的区号。
     fn work_phone_area_code(&self) -> Option<u8> {
         // 如果没有 `?` 运算符，这将需要许多嵌套的 `match` 语句。
@@ -38,7 +37,7 @@ impl Person {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let p = Person {
         job: Some(Job {
@@ -51,4 +50,3 @@ fn main() {
 
     assert_eq!(p.work_phone_area_code(), Some(61));
 }
-

@@ -4,7 +4,7 @@
 
 use std::env;
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let args: Vec<String> = env::args().collect();
 
@@ -16,8 +16,6 @@ fn main() {
     //   $ ./args arg1 arg2
     println!("我获得了 {:?} 个参数：{:?}。", args.len() - 1, &args[1..]);
 }
-
-
 
 // $ ./_07_program_arguments 1 2 3
 // 程序路径：./args

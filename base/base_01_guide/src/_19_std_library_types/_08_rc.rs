@@ -9,7 +9,7 @@
 
 use std::rc::Rc;
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let rc_examples = "Rc 示例".to_string();
     {
@@ -45,4 +45,3 @@ fn main() {
     // println!("rc_examples: {}", rc_examples);
     // TODO：尝试取消注释上面这行
 }
-

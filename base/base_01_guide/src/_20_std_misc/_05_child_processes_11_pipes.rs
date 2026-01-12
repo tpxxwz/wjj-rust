@@ -5,23 +5,20 @@
 use std::io::prelude::*;
 use std::process::{Command, Stdio};
 
-static PANGRAM: &'static str =
-    "the quick brown fox jumps over the lazy dog\n";
+static PANGRAM: &'static str = "the quick brown fox jumps over the lazy dog\n";
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 启动 `wc` 命令
     let mut cmd = if cfg!(target_family = "windows") {
         let mut cmd = Command::new("powershell");
-        cmd.arg("-Command").arg("$input | Measure-Object -Line -Word -Character");
+        cmd.arg("-Command")
+            .arg("$input | Measure-Object -Line -Word -Character");
         cmd
     } else {
         Command::new("wc")
     };
-    let process = match cmd
-        .stdin(Stdio::piped())
-        .stdout(Stdio::piped())
-        .spawn() {
+    let process = match cmd.stdin(Stdio::piped()).stdout(Stdio::piped()).spawn() {
         Err(why) => panic!("无法启动 wc：{}", why),
         Ok(process) => process,
     };
@@ -48,4 +45,3 @@ fn main() {
         Ok(_) => print!("wc 的响应为：\n{}", s),
     }
 }
-

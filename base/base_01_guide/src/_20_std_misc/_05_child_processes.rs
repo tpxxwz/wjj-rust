@@ -3,7 +3,7 @@
 
 use std::process::Command;
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let output = Command::new("rustc")
         .arg("--version")
@@ -20,6 +20,5 @@ fn main() {
         print!("rustc 执行失败，标准错误输出为：\n{}", s);
     }
 }
-
 
 // （建议您尝试在上述示例中向 rustc 传递一个错误的标志）

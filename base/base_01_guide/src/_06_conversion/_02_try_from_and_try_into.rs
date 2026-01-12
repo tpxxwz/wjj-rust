@@ -20,7 +20,7 @@ impl TryFrom<i32> for EvenNumber {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // TryFrom
 
@@ -34,4 +34,3 @@ fn main() {
     let result: Result<EvenNumber, ()> = 5i32.try_into();
     assert_eq!(result, Err(()));
 }
-

@@ -9,18 +9,26 @@
 
 #![allow(dead_code)]
 
-#[derive(Debug)] enum Food { Apple, Carrot, Potato }
+#[derive(Debug)]
+enum Food {
+    Apple,
+    Carrot,
+    Potato,
+}
 
-#[derive(Debug)] struct Peeled(Food);
-#[derive(Debug)] struct Chopped(Food);
-#[derive(Debug)] struct Cooked(Food);
+#[derive(Debug)]
+struct Peeled(Food);
+#[derive(Debug)]
+struct Chopped(Food);
+#[derive(Debug)]
+struct Cooked(Food);
 
 // 剥皮食物。如果没有食物，则返回 `None`。
 // 否则，返回剥皮后的食物。
 fn peel(food: Option<Food>) -> Option<Peeled> {
     match food {
         Some(food) => Some(Peeled(food)),
-        None       => None,
+        None => None,
     }
 }
 
@@ -29,7 +37,7 @@ fn peel(food: Option<Food>) -> Option<Peeled> {
 fn chop(peeled: Option<Peeled>) -> Option<Chopped> {
     match peeled {
         Some(Peeled(food)) => Some(Chopped(food)),
-        None               => None,
+        None => None,
     }
 }
 
@@ -50,11 +58,11 @@ fn process(food: Option<Food>) -> Option<Cooked> {
 fn eat(food: Option<Cooked>) {
     match food {
         Some(food) => println!("嗯，我喜欢 {:?}", food),
-        None       => println!("哎呀！这不能吃。"),
+        None => println!("哎呀！这不能吃。"),
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let apple = Some(Food::Apple);
     let carrot = Some(Food::Carrot);
@@ -69,4 +77,3 @@ fn main() {
     eat(cooked_carrot);
     eat(cooked_potato);
 }
-

@@ -12,9 +12,8 @@ pub mod _05_match_11_destructuring_12_arrays_slices;
 pub mod _05_match_11_destructuring_13_enums;
 pub mod _05_match_11_destructuring_14_pointer_ref;
 pub mod _05_match_11_destructuring_15_struct;
-pub mod _05_match_13_binding;
 pub mod _05_match_12_guards;
+pub mod _05_match_13_binding;
 pub mod _06_if_let;
 pub mod _07_let_else;
 pub mod _08_while_let;
-

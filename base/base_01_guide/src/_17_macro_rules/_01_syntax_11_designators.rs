@@ -8,8 +8,7 @@ macro_rules! create_function {
     ($func_name:ident) => {
         fn $func_name() {
             // `stringify!` 宏将 `ident` 转换为字符串。
-            println!("你调用了 {:?}()",
-                     stringify!($func_name));
+            println!("你调用了 {:?}()", stringify!($func_name));
         }
     };
 }
@@ -24,13 +23,11 @@ macro_rules! print_result {
     // `expr` 指示符用于表达式。
     ($expression:expr) => {
         // `stringify!` 将表达式**原样**转换为字符串。
-        println!("{:?} = {:?}",
-                 stringify!($expression),
-                 $expression);
+        println!("{:?} = {:?}", stringify!($expression), $expression);
     };
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     foo();
     bar();
@@ -58,4 +55,3 @@ fn main() {
 // tt（标记树 token tree）
 // ty（类型 type）
 // vis（可见性限定符 visibility qualifier）
-

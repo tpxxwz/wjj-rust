@@ -4,7 +4,7 @@
 // 在这种情况下，父级变量之后不能作为一个整体使用，但是仍然可以使用只被引用（而不是被移动）的部分。
 // 注意，实现了 Drop 特质 的类型不能被部分移动，因为其 drop 方法会在之后将其作为整体使用。
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     #[derive(Debug)]
     struct Person {
@@ -41,4 +41,3 @@ fn main() {
 // （在这个例子中，我们将 age 变量存储在堆上以说明部分移动：
 // 删除上面代码中的 ref 会导致错误，因为 person.age 的所有权会被移动到变量 age。
 // 如果 Person.age 存储在栈上，就不需要 ref，因为 age 的定义会从 person.age 复制数据而不是移动它。）
-

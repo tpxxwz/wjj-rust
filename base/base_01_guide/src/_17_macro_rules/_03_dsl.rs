@@ -14,7 +14,7 @@ macro_rules! calculate {
     };
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     calculate! {
         eval 1 + 2 // 嘿嘿，`eval` 可不是 Rust 的关键字哦！
@@ -31,4 +31,3 @@ fn main() {
 // 这个例子非常简单，但已经有很多利用宏开发的复杂接口，比如 lazy_static 或 clap。
 //
 // 另外，注意宏中的两对大括号。外层的大括号是 macro_rules! 语法的一部分，除此之外还可以使用 () 或 []。
-

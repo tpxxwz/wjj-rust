@@ -15,7 +15,7 @@ pub trait Iterator {
         F: FnMut(Self::Item) -> bool;
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let vec1 = vec![1, 2, 3];
     let vec2 = vec![4, 5, 6];
@@ -41,5 +41,3 @@ fn main() {
     // 对数组使用 `into_iter()` 产生 `i32`
     println!("2 在 array2 中：{}", array2.into_iter().any(|x| x == 2));
 }
-
-

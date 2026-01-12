@@ -33,11 +33,10 @@ impl<T> GenVal<T> {
     }
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let x = Val { val: 3.0 };
     let y = GenVal { gen_val: 3i32 };
 
     println!("{}, {}", x.value(), y.value());
 }
-

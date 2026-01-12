@@ -3,7 +3,7 @@
 // 这种情况下，循环必须用 'label 标记，并且必须将标签传递给 break/continue 语句。
 
 #![allow(unreachable_code, unused_labels)]
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     'outer: loop {
         println!("进入外层循环");
@@ -23,5 +23,3 @@ fn main() {
 
     println!("退出外层循环");
 }
-
-

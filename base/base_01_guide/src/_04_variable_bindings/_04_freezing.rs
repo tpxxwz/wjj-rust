@@ -1,7 +1,7 @@
 // 冻结
 // 当数据以相同名称被不可变地绑定时，它也会冻结。被冻结的数据在不可变绑定离开作用域之前不能被修改：
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let mut _mutable_integer = 7i32;
 
@@ -19,4 +19,3 @@ fn main() {
     // 正确！`_mutable_integer` 在此作用域中未被冻结
     _mutable_integer = 3;
 }
-

@@ -15,10 +15,9 @@ macro_rules! find_min {
     )
 }
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     println!("{}", find_min!(1));
     println!("{}", find_min!(1 + 2, 2));
     println!("{}", find_min!(5, 2 * 3, 4));
 }
-

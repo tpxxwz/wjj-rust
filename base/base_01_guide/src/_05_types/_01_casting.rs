@@ -6,7 +6,7 @@
 // 抑制所有由溢出转换引起的警告。
 #![allow(overflowing_literals)]
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     let decimal = 65.4321_f32;
 
@@ -86,4 +86,3 @@ fn main() {
         println!("   NaN 转换为 u8 是：{}", f32::NAN.to_int_unchecked::<u8>());
     }
 }
-

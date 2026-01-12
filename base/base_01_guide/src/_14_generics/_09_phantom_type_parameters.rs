@@ -13,12 +13,15 @@ struct PhantomTuple<A, B>(A, PhantomData<B>);
 
 // 一个虚类型结构体，它在 `A` 上是泛型的，带有隐藏参数 `B`。
 #[derive(PartialEq)] // 允许对此类型进行相等性测试。
-struct PhantomStruct<A, B> { first: A, phantom: PhantomData<B> }
+struct PhantomStruct<A, B> {
+    first: A,
+    phantom: PhantomData<B>,
+}
 
 // 注意：为泛型类型 `A` 分配了存储空间，但没有为 `B` 分配。
 //       因此，`B` 不能用于计算。
 
-#[wjj_lib::gen_test]
+#[test]
 fn main() {
     // 这里，`f32` 和 `f64` 是隐藏参数。
     // PhantomTuple 类型指定为 `<char, f32>`。
@@ -45,4 +48,3 @@ fn main() {
     // println!("_struct1 == _struct2 的结果是：{}",
     //           _struct1 == _struct2);
 }
-

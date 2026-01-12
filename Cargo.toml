@@ -30,6 +30,7 @@ members = [
     "deps/dep_orm/dep_orm_sea_orm/db/migration",
     "deps/dep_orm/dep_orm_sqlx",
     "deps/dep_rising_wave",
+    "deps/dep_rpc/dep_rpc_grpc_tonic",
     "deps/dep_serialization",
     "deps/dep_strum",
     "deps/dep_template",

@@ -1,0 +1,21 @@
+[package]
+name = "dep_rpc_grpc_tonic"
+version = "0.0.1"
+edition = "2024"
+
+[[bin]]
+name = "demo_server"
+path = "src/demo_server.rs"
+
+[[bin]]
+name = "demo_client"
+path = "src/demo_client.rs"
+
+[dependencies]
+tokio.workspace = true
+prost = "0.14.2"
+prost-types = "0.14.2"
+tonic = "0.14.2"
+tonic-prost = "0.14.2"
+[build-dependencies]
+tonic-prost-build = "0.14.2"

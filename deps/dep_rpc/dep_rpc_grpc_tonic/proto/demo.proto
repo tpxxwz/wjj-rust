@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package demo;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+
+service UserService {
+  rpc GetUser(UserRequest) returns (UserResponse);
+}
+
+message UserRequest {
+  int64 user_id = 1;
+
+  // 显式可选字段（Rust 中生成 Option<String>）
+  optional string filter = 2;
+}
+
+message UserResponse {
+  
+  UserStatus status = 1;
+
+  // 显式可选字段
+  optional UserInfo info = 2;
+}
+
+enum UserStatus {
+  UNKNOWN = 0;
+  ACTIVE = 1;
+  INACTIVE = 2;
+  BANNED = 3;
+}
+
+message UserInfo {
+  string name = 1;
+
+  // Google 类型
+  google.protobuf.Timestamp created_at = 2;
+
+  // 可选字段
+  optional google.protobuf.Duration active_duration = 3;
+}

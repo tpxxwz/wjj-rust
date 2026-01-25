@@ -11,6 +11,4 @@ serde_json.workspace = true
 handlebars = "6.3.2"
 minijinja = "2.14.0"
 tera = "1.20.1"
-common_core = { path = "../../common/common_core" }
-common_macros = { path = "../../common/common_macros" }
-linkme = "0.3.35"
+wjj-std = { path = "/Users/wjj/projects/wjj-std/wjj-std", features = ["error", "app"] }

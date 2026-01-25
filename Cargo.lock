@@ -678,39 +678,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b05b61dc5112cbb17e4b6cd61790d9845d13888356391624cbe7e41efeac1e75"
 
 [[package]]
-name = "common_core"
-version = "0.0.1"
-dependencies = [
- "common_macros",
- "ctor",
- "linkme",
- "minijinja",
- "once_cell",
- "serde_json",
-]
-
-[[package]]
-name = "common_lib"
-version = "0.0.1"
-
-[[package]]
-name = "common_macros"
-version = "0.0.1"
-dependencies = [
- "proc-macro2",
- "quote",
- "syn 2.0.114",
-]
-
-[[package]]
-name = "common_macros_internals"
-version = "0.0.1"
-
-[[package]]
-name = "common_test"
-version = "0.0.1"
-
-[[package]]
 name = "concurrent-queue"
 version = "2.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -877,9 +844,9 @@ name = "dep_error"
 version = "0.0.1"
 dependencies = [
  "anyhow",
- "common_core",
  "serde_json",
  "thiserror",
+ "wjj-std",
 ]
 
 [[package]]
@@ -952,13 +919,11 @@ dependencies = [
 name = "dep_template"
 version = "0.0.1"
 dependencies = [
- "common_core",
- "common_macros",
  "handlebars",
- "linkme",
  "minijinja",
  "serde_json",
  "tera",
+ "wjj-std",
 ]
 
 [[package]]
@@ -2719,9 +2684,9 @@ dependencies = [
 
 [[package]]
 name = "proc-macro2"
-version = "1.0.105"
+version = "1.0.106"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "535d180e0ecab6268a3e718bb9fd44db66bbbc256257165fc699dadf70d16fe7"
+checksum = "8fd00f0bb2e90d81d1044c2b32617f68fcb9fa3bb7640c23e9c748e53fb30934"
 dependencies = [
  "unicode-ident",
 ]
@@ -2834,9 +2799,9 @@ dependencies = [
 
 [[package]]
 name = "quote"
-version = "1.0.43"
+version = "1.0.44"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "dc74d9a594b72ae6656596548f56f667211f8a97b3d4c3d467150794690dc40a"
+checksum = "21b2ebcf727b7760c461f091f9f0f539b77b8e87f2fd88131e7f1b433b3cece4"
 dependencies = [
  "proc-macro2",
 ]
@@ -5022,6 +4987,40 @@ name = "wit-bindgen"
 version = "0.46.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f17a85883d4e6d00e8a97c586de764dabcc06133f7f1d55dce5cdc070ad7fe59"
+
+[[package]]
+name = "wjj-std"
+version = "0.0.1"
+dependencies = [
+ "async-trait",
+ "linkme",
+ "serde_json",
+ "tokio",
+ "wjj-std-core",
+ "wjj-std-macros",
+]
+
+[[package]]
+name = "wjj-std-core"
+version = "0.0.1"
+dependencies = [
+ "async-trait",
+ "ctor",
+ "linkme",
+ "minijinja",
+ "once_cell",
+ "serde_json",
+ "tokio",
+]
+
+[[package]]
+name = "wjj-std-macros"
+version = "0.0.1"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 2.0.114",
+]
 
 [[package]]
 name = "writeable"

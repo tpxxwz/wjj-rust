@@ -1,6 +1,6 @@
-use common_core::BaseFmtErrs::SysFmtErr;
-use common_core::BaseRawErrs::SysRawErr;
-use common_macros::{fmt_err, raw_err};
+use wjj_std::BaseFmtErrs::SysFmtErr;
+use wjj_std::BaseRawErrs::SysRawErr;
+use wjj_std::{fmt_err, raw_err};
 use serde_json::json;
 
 #[derive(fmt_err)]

@@ -7,4 +7,4 @@ edition = "2024"
 thiserror = "2.0.17"
 anyhow = "1.0.100"
 serde_json.workspace = true
-common_core = { path = "../../common/common_core" }
+wjj-std = { path = "../../../wjj-std/wjj-std" }

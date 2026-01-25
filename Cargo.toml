@@ -15,11 +15,6 @@
 [workspace]
 resolver = "3"
 members = [
-    "common/common_core",
-    "common/common_macros",
-    "common/common_macros_internals",
-    "common/common_lib",
-    "common/common_test",
     "base/base_01_guide",
     "base/base_02_extend",
     "deps/dep_async",
